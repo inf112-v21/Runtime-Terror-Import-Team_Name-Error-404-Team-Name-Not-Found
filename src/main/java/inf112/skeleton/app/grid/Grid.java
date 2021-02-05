@@ -12,7 +12,7 @@ public class Grid<T> implements IGrid<T>, Iterable<T> {
     public Grid(int height, int width, T Element) {
 
         if(width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Error: the higth and width cant be below 0");
+            throw new IllegalArgumentException("Error: the height and width cant be below 0");
         }
 
         this.height = height;
