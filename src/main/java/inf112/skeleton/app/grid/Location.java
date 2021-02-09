@@ -8,11 +8,13 @@ public class Location implements ILocation{
     protected final int x;
     protected final int y;
     protected final int idx;
+    protected final int edge;
 
-    public Location(int x, int y, int idx) {
+    public Location(int x, int y, int idx, int edgeMask) {
         this.x = x;
         this.y = y;
         this.idx = idx;
+        this.edge = edgeMask;
     }
 
 

@@ -7,9 +7,9 @@ public interface IBoard extends Iterable<ILocation> {
     /**
      * Check if the pos (x,y) is inside the board.
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x X-coordinate
+     * @param y Y-coordinate
+     * @return True if the (x,y) is inside the board
      */
     boolean inBoard(int x,int y);
 
@@ -37,4 +37,10 @@ public interface IBoard extends Iterable<ILocation> {
      * @return list with all the locations on the board
      */
     List<ILocation> locations();
+
+    ILocation from1DCord(int i);
+
+    int to1DCord(int x, int y);
+
+    int getSize();
 }
