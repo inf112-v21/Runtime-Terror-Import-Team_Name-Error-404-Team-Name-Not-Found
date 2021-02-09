@@ -13,7 +13,6 @@ public class GridTest {
     public void constructTest1() {
         IGrid<String> grid = new Grid<>(11, 17, "S");
 
-        // TODO: sjekk at bredde og høyde faktisk er 11 og 17
         Assert.assertEquals(11, grid.getHeight());
         Assert.assertEquals(17, grid.getWidth());
     }
