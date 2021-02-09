@@ -4,7 +4,7 @@ package inf112.skeleton.app.grid;
  * IGrid is a generic gid system used for the backend and frontend
  *
  */
-public interface IGrid<T> {
+public interface IGrid<T>{
 
     /**
      *
@@ -40,5 +40,16 @@ public interface IGrid<T> {
      * @return The width of the grid.
      */
     int getWidth();
+
+    /**
+     * Check if coordinates are valid.
+     *
+     * Valid coordinates are 0 <= x < getWidth(), 0 <= y < getHeight().
+     *
+     * @param x an x coordinate
+     * @param y an y coordinate
+     * @return true if the (x,y) position is within the grid
+     */
+    boolean isValid(int x, int y);
 
 }

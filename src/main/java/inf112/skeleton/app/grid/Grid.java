@@ -5,58 +5,50 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Grid<T> implements IGrid<T>, Iterable<T> {
-    protected List<T> cells;
-    protected int height;
-    protected int width;
+    private final List<T> cells;
+    private final IBoard board;
 
-    public Grid(int height, int width, T Element) {
-
-        if(width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Error: the height and width cant be below 0");
+    public Grid(IBoard board, T initElement) {
+        if (board == null) {
+            throw new IllegalArgumentException();
         }
 
-        this.height = height;
-        this.width = width;
-        cells = new ArrayList<>(height*width);
-        for (int i = 0; i < height*width; i++) {
-            cells.add(Element);
+        this.board = board;
+        this.cells = new ArrayList<T>(board.getSize());
+        for (int i = 0; i < board.getSize(); ++i) {
+            cells.add(initElement);
         }
-
     }
 
+    public Grid(int height, int width, T Element) {
+        this(new Board(width, height), Element);
+    }
 
     @Override
     public void set(int x, int y, T element) {
-        if(y < 0 || y >= height)
-            throw new IndexOutOfBoundsException("Error: The X coordinate has to be inside the gameboard!");
-        if(x < 0 || x >= width)
-            throw new IndexOutOfBoundsException("Error: The X coordinate has to be inside the gameboard!");
-
-        cells.set(coordinateToIndex(x, y), element);
+        cells.set(board.to1DCord(x, y), element);
     }
 
     @Override
     public T get(int x, int y) {
-        if(y < 0 || y >= height)
-            throw new IndexOutOfBoundsException("Error: The X coordinate has to be inside the gameboard!");
-        if(x < 0 || x >= width)
-            throw new IndexOutOfBoundsException("Error: The X coordinate has to be inside the gameboard!");
-
-        return cells.get(coordinateToIndex(x, y));
-    }
-
-    private int coordinateToIndex(int x, int y) {
-        return x + y*width;
+        return cells.get(board.to1DCord(x, y));
     }
 
     @Override
     public int getHeight() {
-        return height;
+        return board.getWidth();
     }
 
     @Override
     public int getWidth() {
-        return width;
+        return board.getWidth();
+    }
+
+    public IBoard getBoard() {return board;}
+
+    @Override
+    public boolean isValid(int x, int y) {
+        return board.inBoard(x, y);
     }
 
     @Override

@@ -5,6 +5,8 @@ import java.util.Collection;
 
 public class Location implements ILocation{
 
+    Board b;
+
     protected final int x;
     protected final int y;
     protected final int idx;
@@ -17,17 +19,14 @@ public class Location implements ILocation{
         this.edge = edgeMask;
     }
 
-
-
-
     @Override
     public boolean canGo(Direction dir) {
-        return false;
+        return (edge & dir.getMask()) == 0;
     }
 
     @Override
     public ILocation go(Direction dir) {
-        return null;
+        return b.location(x + dir.getDx(), y + dir.getDy());
     }
 
     @Override
