@@ -1,5 +1,6 @@
 package inf112.skeleton.app.grid;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Location implements ILocation{
@@ -15,6 +16,8 @@ public class Location implements ILocation{
     }
 
 
+
+
     @Override
     public boolean canGo(Direction dir) {
         return false;
@@ -27,6 +30,12 @@ public class Location implements ILocation{
 
     @Override
     public Collection<ILocation> Neighbours() {
-        return null;
+        Collection<ILocation> nighbours = new ArrayList<>(4);
+        for (Direction dir : Direction.DIRECTIONS){
+            if (canGo(dir)) {
+                nighbours.add(go(dir));
+            }
+        }
+        return nighbours;
     }
 }
