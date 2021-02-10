@@ -18,7 +18,6 @@ public class InputHandler extends InputAdapter {
                 game.setScreen(new TitleScreen(game));
                 break;
             case Input.Keys.UP:
-
                 break;
             case Input.Keys.LEFT:
                 break;
