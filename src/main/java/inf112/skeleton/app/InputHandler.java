@@ -16,6 +16,14 @@ public class InputHandler extends InputAdapter {
         switch (keycode) {
             case Input.Keys.ESCAPE:
                 game.setScreen(new TitleScreen(game));
+                break;
+            case Input.Keys.UP:
+
+                break;
+            case Input.Keys.LEFT:
+                break;
+            case Input.Keys.RIGHT:
+                break;
             default:
 
         }
