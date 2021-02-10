@@ -1,5 +1,8 @@
 package inf112.skeleton.app.board;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.object.Flag;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -14,7 +17,7 @@ public class Board {
     private TiledMap map_TiledMap;
 
     private TiledMapTileLayer board_MapLayer;
-    private TiledMapTileLayer players_MapLayer;
+    public TiledMapTileLayer players_MapLayer;
     private TiledMapTileLayer flags_MapLayer;
 
     private int height;
@@ -31,6 +34,8 @@ public class Board {
         board_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Board");
         players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
         flags_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Flags");
+
+
 
         flags = new ArrayList<Flag>();
 
@@ -83,10 +88,4 @@ public class Board {
     public ArrayList<Flag> getFlags() {
         return flags;
     }
-
-   // public Board(int width, int height){
-   //     map_TiledMap = new TiledMap();
-   //     TiledMap.getProperties().put("width", width)
-    //
-   // }
 }
