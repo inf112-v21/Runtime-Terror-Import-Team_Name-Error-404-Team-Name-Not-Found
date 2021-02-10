@@ -1,1 +1,1 @@
-# Gruppe 8 navn
+# Gruppe 8
