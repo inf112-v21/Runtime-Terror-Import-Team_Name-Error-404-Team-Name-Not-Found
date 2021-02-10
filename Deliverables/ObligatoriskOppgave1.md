@@ -147,10 +147,13 @@ flag, startposisjoner, skiftenøkkel, hammer og skiftenøkkel, Spiller hud (UI),
     
 8. Som en spiller må jeg kunne se de ni kortene og velge ut fem av dem.
     - Akseptansekriterier:
-        - Spilleren ser de 9 kortene 
+        - Spilleren ser de ni kortene 
+        - Spilleren kan velge minst et av de 9 kortene
+        - Spilleren ser hvilke av de 9 kortene som er valgt
 
 9. Som en spiller må de valgte kortene mine kunne styre roboten min på brettet.
     - Akseptansekriterier:
+        - Spilleren må kunne velge orderen på de fem kortene som skal styre robotene, styrt etter prioriteringspoengene.
 
 9. Som en spiller må jeg kunne se menyen slik at jeg kan starte spillet.
     - Akseptansekriterier:
@@ -162,17 +165,19 @@ flag, startposisjoner, skiftenøkkel, hammer og skiftenøkkel, Spiller hud (UI),
     - Akseptansekriterier:
     Spilleren må kunne trykke på en knapp for å kunne få opp menyen til spillet.
 
+12. Som utvikler trenger jeg å kunne bruke piltaster/WASD for å bevege en robot for å kunne bevege roboten til flagget:
+    - Akseptansekriterier:
+    
+    
 
-
-Som utviklert trenger jeg å kunne kalle bevegelses funksjoner for å se om funksjonene virker.
 
 ### Prioritert liste over brukerhistorier i første iterasjon
 
 
 
-
 ## Oppgave 4
-
+Arbeidsoppgaver som må bli løst er for å realisere brukerhistoriene:
+- Få UI og backendbrettet til å snakke med hverandre. Så vi kan bevege brikker og dekke MVP kravet. 
 
 
 ## Prosjekt-retrospektiv
