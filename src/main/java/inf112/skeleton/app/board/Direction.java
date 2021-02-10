@@ -1,10 +1,11 @@
-package inf112.skeleton.app.grid;
+package inf112.skeleton.app.board;
 
 import java.util.List;
 import java.util.Arrays;
 
 public enum Direction {
-    NORTH(0, 0, -1, 1), EAST(90, 1, 0, 4 ), SOUTH(180, -1, 0, 2), WEST(270, 0, 1, 8);
+    NORTH(0, 0, -1, 1), EAST(90, 1, 0, 4 ),
+    SOUTH(180, -1, 0, 2), WEST(270, 0, 1, 8);
 
 
     private final double degrees;
