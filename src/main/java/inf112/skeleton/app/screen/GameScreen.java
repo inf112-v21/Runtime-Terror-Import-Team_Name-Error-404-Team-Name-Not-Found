@@ -1,41 +1,69 @@
 package inf112.skeleton.app.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.RoboRally;
-import inf112.skeleton.app.board.Board;
+import inf112.skeleton.app.grid.Board;
 
 public class GameScreen extends ParentScreen {
+    private TiledMap map_TiledMap;
+    private TiledMapTileLayer board_MapLayer;
+    private TiledMapTileLayer holes_MapLayer;
+    private TiledMapTileLayer flags_MapLayer;
+    private TiledMapTileLayer players_MapLayer;
+
+    Board board;
+
     OrthogonalTiledMapRenderer renderer;
     OrthographicCamera camera;
 
-    Board board;
+    private float MAP_SIZE_X;
+    private float MAP_SIZE_Y;
+    private float TILE_SIZE;
 
 
     public GameScreen(RoboRally aGame) {
         super(aGame);
 
-        board = new Board("assets/map_001.tmx");
+        /**
+         * Load the map and split each layer into a map layer
+         */
+        //map_TiledMap = new TmxMapLoader().load("./assets/testMap.tmx");
+//
+        //board_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Board");
+        //holes_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Holes");
+        //flags_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Flags");
+        //players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
+        board = new Board("./assets/testMap.tmx");
+
+        /**
+         * Defines the size of the map and resolution of the tiles
+         */
+        MAP_SIZE_X = 5;
+        MAP_SIZE_Y = 5;
+        TILE_SIZE = 300;
 
         /**
          * set up the camera
          */
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 12, 12);
+        camera.setToOrtho(false, MAP_SIZE_X, MAP_SIZE_Y);
         camera.update();
 
         /**
          * Render the tiles on to the camera
          */
-        renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/ 300);
+        renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/TILE_SIZE);
         renderer.setView(camera);
 
         /**
          *
          */
-
-
 
 
     }
