@@ -5,6 +5,10 @@ import com.badlogic.gdx.InputAdapter;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.screen.GameScreen;
 
+/**
+ * a class that handles the input form keyboard when playing, making us able to play with the arrow keys
+ *
+ */
 public class GameScreenInputHandler extends InputAdapter {
     private RoboRally game;
     private GameScreen screen;
@@ -22,36 +26,24 @@ public class GameScreenInputHandler extends InputAdapter {
                 break;
             case Input.Keys.UP:
                 if (screen != null) {
-                    //gameScreen.robot.erase();
-                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()+1);
-                    //gameScreen.robot.draw();
                     screen.robot.walk("up");
                     game.render();
                 }
                 break;
             case Input.Keys.LEFT:
                 if (screen != null) {
-                    //gameScreen.robot.erase();
-                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()-1, gameScreen.robot.getPosition().getY());
-                    //gameScreen.robot.draw();
                     screen.robot.walk("left");
                     game.render();
                 }
                 break;
             case Input.Keys.RIGHT:
                 if (screen != null) {
-                    //gameScreen.robot.erase();
-                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()+1, gameScreen.robot.getPosition().getY());
-                    //gameScreen.robot.draw();
                     screen.robot.walk("right");
                     game.render();
                 }
                 break;
             case Input.Keys.DOWN:
                 if (screen != null) {
-                    //gameScreen.robot.erase();
-                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()-1);
-                    //gameScreen.robot.draw();
                     screen.robot.walk("down");
                     game.render();
                 }

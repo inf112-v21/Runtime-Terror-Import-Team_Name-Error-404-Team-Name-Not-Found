@@ -2,6 +2,9 @@ package inf112.skeleton.app.board;
 
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * changes Vector2 float vectors into int vectors for easier use
+ */
 public class IntVector {
     private Vector2 vector;
 

@@ -5,6 +5,9 @@ import com.badlogic.gdx.InputAdapter;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.screen.TitleScreen;
 
+/**
+ * a class that handles the input form keyboard when on title screen, to execute commands
+ */
 public class TitleScreenInputHandler extends InputAdapter {
     private RoboRally game;
     private TitleScreen screen;

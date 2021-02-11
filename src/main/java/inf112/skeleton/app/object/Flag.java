@@ -3,6 +3,9 @@ package inf112.skeleton.app.object;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
+/**
+ * a class for the object Flag
+ */
 public class Flag {
     private Location location;
     private int nr;

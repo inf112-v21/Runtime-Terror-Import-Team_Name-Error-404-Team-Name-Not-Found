@@ -23,6 +23,11 @@ public class Board {
     private int width;
     private int tileHeight;
 
+    /**
+     * construct a game board form the map that is inputted with a filename
+     *
+     * @param fileName a map file
+     */
     public Board(String fileName){
         map_TiledMap = new TmxMapLoader().load(fileName);
 
@@ -40,12 +45,16 @@ public class Board {
         flags = new ArrayList<Flag>();
         holes = new ArrayList<Hole>();
 
-        initFlags(height, width);
-        initHoles(height, width);
+        initFlags();
+        initHoles();
 
     }
 
-    private void initFlags(int height, int width){
+    /**
+     * check the entire map for all the flags and adds them to a list of flags
+     *
+     */
+    private void initFlags(){
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
                 TiledMapTileLayer.Cell cell = flags_MapLayer.getCell(x, y);
@@ -71,7 +80,10 @@ public class Board {
         }
     }
 
-    private void initHoles(int height, int width) {
+    /**
+     * check all the holes on the hole layer and adds them to the hole list.
+     */
+    private void initHoles() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
                 TiledMapTileLayer.Cell cell = holes_MapLayer.getCell(x, y);
@@ -84,6 +96,13 @@ public class Board {
         }
     }
 
+    /**
+     * check if the input (x,y) position mach with the wining flag
+     *
+     * @param x x - coordinate
+     * @param y y - coordinate
+     * @return return true if matching otherwise false
+     */
     public boolean checkWin(int x, int y){
         Flag winFlag = flags.get(0);
         if (winFlag.getPosition().getX() == x && winFlag.getPosition().getY() == y ) {
@@ -92,6 +111,13 @@ public class Board {
         return false;
     }
 
+    /**
+     * check if the input (x,y) position mach with the hole
+     *
+     * @param x x - coordinate
+     * @param y y - coordinate
+     * @return return true if matching otherwise false
+     */
     public boolean checkHole(int x, int y) {
         Hole hole = holes.get(0);
         if (hole.getPosition().getX() == x && hole.getPosition().getY() == y){

@@ -9,6 +9,9 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
+/**
+ * a class for the object Robot
+ */
 public class Robot {
     private Location location;
     private TiledMapTileLayer.Cell cellState;
@@ -19,6 +22,13 @@ public class Robot {
 
     private Board board;
 
+    /**
+     * a constructor for the robot object
+     *
+     * @param location the location of a robot
+     * @param fileName image of the robot
+     * @param aBoard  the board
+     */
     public Robot(Location location, String fileName, Board aBoard){
         this.location = location;
         this.board = aBoard;
@@ -38,59 +48,99 @@ public class Robot {
         cellState = playerCell_alive;
     }
 
+    /**
+     * @return direction the robot is facing
+     */
     public Direction getDirection() {
         return this.location.getDirection();
     }
-    
+
+    /**
+     * @return robots position
+     */
     public IntVector getPosition() {
         return this.location.getPosition();
     }
 
+    /**
+     * removes the robot form the game board
+     */
     public void erase(){
         board.players_MapLayer.setCell(location.getPosition().getX(), location.getPosition().getY(), new TiledMapTileLayer.Cell());
     }
 
+    /**
+     * draws the robot on the game board
+     */
     public void draw(){
         board.players_MapLayer.setCell(location.getPosition().getX(), location.getPosition().getY(), cellState);
     }
 
+    /**
+     * @return the max lives a robot can have
+     */
     public static int getMaxLives(){
         return 3;
     }
 
+    /**
+     * @return the max health a robot can have
+     */
     public static int getMaxHealth() {
         return 10;
     }
 
+    /**
+     * set the location of a robot to a (x,y) position
+     *
+     * @param x x - coordinate
+     * @param y y - coordinate
+     */
     public void setLocation(int x, int y){
         this.location = new Location(x,y,location.getDirection());
     }
 
+    /**
+     * check if the given (x,y) posision is on the board
+     *
+     * @param x - x coordinate
+     * @param y - Y coordinate
+     * @return false if outside the board
+     */
     public boolean onBoard(int x, int y) {
         if (x >= 0 && x < board.getHeight()) {
             if(y >= 0 && y < board.getWidth()){
-                System.out.println(board.getHeight());
-                System.out.println(board.getWidth());
-                System.out.println(x);
-                System.out.println(y);
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * change the texture of the robot when it has won the game
+     *
+     */
     public void onWin(){
         cellState = playerCell_win;
         erase();
         draw();
     }
 
+    /**
+     * change the texture of the robot when the robot has died
+     *
+     */
     public void onDeath(){
         cellState = playerCell_dead;
         erase();
         draw();
     }
 
+    /**
+     * moves the robot to 1 tile in 4 directions up, down, left and right
+     *
+     * @param way they way you want it to move
+     */
     public void walk(String way){
         switch (way){
             case "up":

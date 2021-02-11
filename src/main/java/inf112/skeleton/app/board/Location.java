@@ -1,5 +1,8 @@
 package inf112.skeleton.app.board;
 
+/**
+ * location of a object that shows what way its facing and where it is
+ */
 public class Location {
     private final IntVector position;
     private final Direction direction;
@@ -13,10 +16,16 @@ public class Location {
         this(new IntVector(x,y), dir);
     }
 
+    /**
+     * @return return a object position on the board
+     */
     public IntVector getPosition() {
         return position;
     }
 
+    /**
+     * @return return the direction a objet is facing
+     */
     public Direction getDirection() {
         return direction;
     }
