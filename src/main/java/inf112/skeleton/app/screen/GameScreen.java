@@ -53,10 +53,10 @@ public class GameScreen extends ParentScreen {
         super.render(delta);
         renderer.render();
         if (board.checkWin(robot.getPosition().getX(),robot.getPosition().getY())){
-            game.setScreen(new WinScreen(game));
+            robot.onWin();
         }
         if (board.checkHole(robot.getPosition().getX(),robot.getPosition().getY())){
-            game.setScreen(new DeadScreen(game));
+            robot.onDeath();
         }
     }
 }

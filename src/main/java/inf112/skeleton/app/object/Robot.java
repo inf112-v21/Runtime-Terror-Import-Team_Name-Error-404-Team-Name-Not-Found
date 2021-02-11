@@ -13,7 +13,6 @@ public class Robot {
     private Location location;
     private TiledMapTileLayer.Cell cellState;
 
-
     public TiledMapTileLayer.Cell playerCell_alive;
     public TiledMapTileLayer.Cell playerCell_dead;
     public TiledMapTileLayer.Cell playerCell_win;
@@ -78,6 +77,18 @@ public class Robot {
             }
         }
         return false;
+    }
+
+    public void onWin(){
+        cellState = playerCell_win;
+        erase();
+        draw();
+    }
+
+    public void onDeath(){
+        cellState = playerCell_dead;
+        erase();
+        draw();
     }
 
     public void walk(String way){
