@@ -19,4 +19,6 @@ public class Flag {
         return this.location.getPosition();
     }
 
+    public int getNr() {return this.nr; }
+
 }

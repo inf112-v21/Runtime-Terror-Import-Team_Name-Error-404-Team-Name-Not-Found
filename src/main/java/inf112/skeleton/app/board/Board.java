@@ -22,6 +22,7 @@ public class Board {
     private int height;
     private int width;
     private int tileHeight;
+    private int numberofflags;
 
     /**
      * construct a game board form the map that is inputted with a filename
@@ -47,6 +48,8 @@ public class Board {
 
         initFlags();
         initHoles();
+
+        int numberofflags = flags.size();
 
     }
 
@@ -104,9 +107,10 @@ public class Board {
      * @return return true if matching otherwise false
      */
     public boolean checkWin(int x, int y){
-        Flag winFlag = flags.get(0);
-        if (winFlag.getPosition().getX() == x && winFlag.getPosition().getY() == y ) {
-            return true;
+        for (Flag flag : flags) {
+            if (flag.getPosition().getX() == x && flag.getPosition().getY() == y) {
+                return true;
+            }
         }
         return false;
     }
@@ -119,12 +123,14 @@ public class Board {
      * @return return true if matching otherwise false
      */
     public boolean checkHole(int x, int y) {
-        Hole hole = holes.get(0);
-        if (hole.getPosition().getX() == x && hole.getPosition().getY() == y){
-            return true;
+        for (Hole hole : holes) {
+            if (hole.getPosition().getX() == x && hole.getPosition().getY() == y) {
+                return true;
+            }
         }
         return false;
     }
+
 
     public TiledMap getMap(){
         return map_TiledMap;
