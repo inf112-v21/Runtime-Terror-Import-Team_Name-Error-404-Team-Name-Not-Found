@@ -21,10 +21,16 @@ public class GameScreen extends ParentScreen {
 
     public GameScreen(RoboRally aGame) {
         super(aGame);
+
+        /**
+         * Adds det inputhandler for the game inputs to te multiplexer
+         */
         inputMultiplexer.addProcessor(new GameScreenInputHandler(game,this));
 
-
-        board = new Board("./assets/testMap.tmx");
+        /**
+         * Create the board, this class also renders the map
+         */
+        board = new Board("./assets/map_001.tmx");
 
         /**
          * set up the camera
@@ -52,6 +58,11 @@ public class GameScreen extends ParentScreen {
     public void render(float delta) {
         super.render(delta);
         renderer.render();
+
+
+        /**
+         * Here we check the win and death condition.
+         */
         if (board.checkWin(robot.getPosition().getX(),robot.getPosition().getY())){
             robot.onWin();
         }

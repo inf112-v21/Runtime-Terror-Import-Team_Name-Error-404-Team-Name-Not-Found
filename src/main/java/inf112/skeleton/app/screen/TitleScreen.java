@@ -11,26 +11,37 @@ import com.badlogic.gdx.utils.Align;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
 
+/**
+ * This is a child of the parent screen class.
+ *
+ * Is displays the Title screen, all it does is to draw the label and button,
+ * and give the button an action when it is pressed.
+ *
+ */
 public class TitleScreen extends ParentScreen{
 
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
 
+
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         BitmapFont myFont = new BitmapFont(Gdx.files.internal("skin/arial_black.fnt"));
         labelStyle.font = myFont;
         labelStyle.fontColor = Color.RED;
 
+        /**
+         * Title label
+         */
         int row_height = Gdx.graphics.getWidth() / 12;
-
         Label title = new Label("Title",labelStyle);
         title.setSize(Gdx.graphics.getWidth(),row_height);
         title.setPosition(0,Gdx.graphics.getHeight()-row_height*2);
         title.setAlignment(Align.center);
-        stage.addActor(title);
 
-
+        /**
+         * Play button
+         */
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
         buttonStyle.font = myFont;
         buttonStyle.fontColor = Color.BLUE;
@@ -48,6 +59,12 @@ public class TitleScreen extends ParentScreen{
                 return true;
             }
         });
+
+
+        /**
+         * Add the elements to the stage
+         */
+        stage.addActor(title);
         stage.addActor(playButton);
 
     }

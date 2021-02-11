@@ -1,5 +1,6 @@
 package inf112.skeleton.app.inputHandlers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import inf112.skeleton.app.RoboRally;
@@ -21,12 +22,13 @@ public class TitleScreenInputHandler extends InputAdapter {
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Input.Keys.ESCAPE:
+                Gdx.app.exit();
                 break;
-            case Input.Keys.UP:
+            case Input.Keys.F:
+                game.setFullscreen();
                 break;
-            case Input.Keys.LEFT:
-                break;
-            case Input.Keys.RIGHT:
+            case Input.Keys.G:
+                game.setWindowed();
                 break;
             default:
 
