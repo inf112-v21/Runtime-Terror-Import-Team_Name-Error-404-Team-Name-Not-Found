@@ -10,8 +10,8 @@ public class RoboRally extends Game {
     @Override
     public void create() {
         skin = new Skin();
-
         this.setScreen(new TitleScreen(this));
+
     }
 
     @Override

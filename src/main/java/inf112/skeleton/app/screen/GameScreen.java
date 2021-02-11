@@ -1,11 +1,17 @@
 package inf112.skeleton.app.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import inf112.skeleton.app.InputHandler;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.board.Board;
 import inf112.skeleton.app.board.Direction;
+import inf112.skeleton.app.board.IntVector;
+import inf112.skeleton.app.board.Location;
 import inf112.skeleton.app.object.Robot;
 
 public class GameScreen extends ParentScreen {
@@ -19,6 +25,9 @@ public class GameScreen extends ParentScreen {
 
     public GameScreen(RoboRally aGame) {
         super(aGame);
+
+        inputMultiplexer = new InputMultiplexer();
+        inputMultiplexer.addProcessor(new InputHandler(game,this));
 
         /**
          * Load the map and split each layer into a map layer
@@ -39,9 +48,7 @@ public class GameScreen extends ParentScreen {
         renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/(float) board.getTileHeight());
         renderer.setView(camera);
 
-        robot = new Robot(new Vector2(1, 1), Direction.NORTH, "assets/player.png", board);
-
-
+        robot = new Robot(new Location(new IntVector(1,1),Direction.NORTH), "assets/player.png", board);
     }
 
     @Override
@@ -54,5 +61,11 @@ public class GameScreen extends ParentScreen {
     public void render(float delta) {
         super.render(delta);
         renderer.render();
+        if (board.checkWin(robot.getPosition().getX(),robot.getPosition().getY())){
+            game.setScreen(new WinScreen(game));
+        }
+        if (board.checkHole(robot.getPosition().getX(),robot.getPosition().getY())){
+            game.setScreen(new DeadScreen(game));
+        }
     }
 }

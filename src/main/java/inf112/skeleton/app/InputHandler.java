@@ -29,13 +29,39 @@ public class InputHandler extends InputAdapter {
                 break;
             case Input.Keys.UP:
                 if (gameScreen != null){
-                    gameScreen.robot.walk(1);
+                    //gameScreen.robot.erase();
+                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()+1);
+                    //gameScreen.robot.draw();
+                    gameScreen.robot.walk("up");
                     game.render();
                 }
                 break;
             case Input.Keys.LEFT:
+                if (gameScreen != null){
+                    //gameScreen.robot.erase();
+                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()-1, gameScreen.robot.getPosition().getY());
+                    //gameScreen.robot.draw();
+                    gameScreen.robot.walk("left");
+                    game.render();
+                }
                 break;
             case Input.Keys.RIGHT:
+                if (gameScreen != null){
+                    //gameScreen.robot.erase();
+                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()+1, gameScreen.robot.getPosition().getY());
+                    //gameScreen.robot.draw();
+                    gameScreen.robot.walk("right");
+                    game.render();
+                }
+                break;
+            case Input.Keys.DOWN:
+                if (gameScreen != null){
+                    //gameScreen.robot.erase();
+                    //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()-1);
+                    //gameScreen.robot.draw();
+                    gameScreen.robot.walk("down");
+                    game.render();
+                }
                 break;
             default:
 

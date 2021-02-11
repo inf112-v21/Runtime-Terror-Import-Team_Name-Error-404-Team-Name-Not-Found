@@ -1,20 +1,17 @@
 package inf112.skeleton.app.object;
 
-import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
-public class Flag {
+public class Hole {
     private Location location;
-    private int nr;
 
-    public Flag(Location pos, int flagNr) {
+
+    public Hole(Location pos) {
         this.location = pos;
-        this.nr = flagNr;
     }
 
     public IntVector getPosition() {
         return this.location.getPosition();
     }
-
 }

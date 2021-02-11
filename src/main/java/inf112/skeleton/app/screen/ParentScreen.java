@@ -21,7 +21,6 @@ public class ParentScreen implements Screen {
         stage = new Stage(new ScreenViewport());
 
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(new InputHandler(game,this));
         inputMultiplexer.addProcessor(stage);
 
     }
