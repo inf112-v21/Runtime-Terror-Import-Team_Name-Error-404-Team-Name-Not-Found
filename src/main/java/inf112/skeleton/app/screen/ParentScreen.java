@@ -6,7 +6,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import inf112.skeleton.app.InputHandler;
 import inf112.skeleton.app.RoboRally;
 
 public class ParentScreen implements Screen {

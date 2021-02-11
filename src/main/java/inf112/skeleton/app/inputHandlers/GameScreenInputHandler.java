@@ -1,65 +1,58 @@
-package inf112.skeleton.app;
+package inf112.skeleton.app.inputHandlers;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.Screen;
-import inf112.skeleton.app.board.Board;
+import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.screen.GameScreen;
-import inf112.skeleton.app.screen.TitleScreen;
 
-public class InputHandler extends InputAdapter {
+public class GameScreenInputHandler extends InputAdapter {
     private RoboRally game;
-    private Screen screen;
-    private GameScreen gameScreen;
+    private GameScreen screen;
 
-    public InputHandler(RoboRally aGame, Screen aScreen) {
+    public GameScreenInputHandler(RoboRally aGame, GameScreen aScreen) {
         game = aGame;
         screen = aScreen;
-    }
-    public InputHandler(RoboRally aGame, GameScreen aScreen) {
-        game = aGame;
-        gameScreen = aScreen;
     }
 
     @Override
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Input.Keys.ESCAPE:
-                game.setScreen(new TitleScreen(game));
+                game.pauseGame();
                 break;
             case Input.Keys.UP:
-                if (gameScreen != null){
+                if (screen != null) {
                     //gameScreen.robot.erase();
                     //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()+1);
                     //gameScreen.robot.draw();
-                    gameScreen.robot.walk("up");
+                    screen.robot.walk("up");
                     game.render();
                 }
                 break;
             case Input.Keys.LEFT:
-                if (gameScreen != null){
+                if (screen != null) {
                     //gameScreen.robot.erase();
                     //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()-1, gameScreen.robot.getPosition().getY());
                     //gameScreen.robot.draw();
-                    gameScreen.robot.walk("left");
+                    screen.robot.walk("left");
                     game.render();
                 }
                 break;
             case Input.Keys.RIGHT:
-                if (gameScreen != null){
+                if (screen != null) {
                     //gameScreen.robot.erase();
                     //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX()+1, gameScreen.robot.getPosition().getY());
                     //gameScreen.robot.draw();
-                    gameScreen.robot.walk("right");
+                    screen.robot.walk("right");
                     game.render();
                 }
                 break;
             case Input.Keys.DOWN:
-                if (gameScreen != null){
+                if (screen != null) {
                     //gameScreen.robot.erase();
                     //gameScreen.robot.setLocation(gameScreen.robot.getPosition().getX(), gameScreen.robot.getPosition().getY()-1);
                     //gameScreen.robot.draw();
-                    gameScreen.robot.walk("down");
+                    screen.robot.walk("down");
                     game.render();
                 }
                 break;
@@ -68,5 +61,4 @@ public class InputHandler extends InputAdapter {
         }
         return true;
     }
-
 }

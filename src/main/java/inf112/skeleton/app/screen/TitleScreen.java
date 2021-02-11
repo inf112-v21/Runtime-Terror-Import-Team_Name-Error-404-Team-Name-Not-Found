@@ -9,11 +9,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import inf112.skeleton.app.RoboRally;
+import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
 
 public class TitleScreen extends ParentScreen{
 
     public TitleScreen(RoboRally aGame) {
         super(aGame);
+        inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
 
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         BitmapFont myFont = new BitmapFont(Gdx.files.internal("skin/arial_black.fnt"));
@@ -39,7 +41,7 @@ public class TitleScreen extends ParentScreen{
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.setScreen(new GameScreen(game));
+                game.startGame();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -58,5 +60,10 @@ public class TitleScreen extends ParentScreen{
     @Override
     public void render(float delta) {
         super.render(delta);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
     }
 }

@@ -1,12 +1,10 @@
 package inf112.skeleton.app.board;
 
-import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.object.Flag;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inf112.skeleton.app.object.Hole;
-import inf112.skeleton.app.screen.GameScreen;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,5 @@
 package inf112.skeleton.app.object;
 
-import com.badlogic.gdx.math.Vector2;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 

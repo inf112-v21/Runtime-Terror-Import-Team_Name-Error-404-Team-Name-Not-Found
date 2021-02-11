@@ -1,17 +1,13 @@
 package inf112.skeleton.app.screen;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
-import inf112.skeleton.app.InputHandler;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.board.Board;
 import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
+import inf112.skeleton.app.inputHandlers.GameScreenInputHandler;
 import inf112.skeleton.app.object.Robot;
 
 public class GameScreen extends ParentScreen {
@@ -25,13 +21,8 @@ public class GameScreen extends ParentScreen {
 
     public GameScreen(RoboRally aGame) {
         super(aGame);
+        inputMultiplexer.addProcessor(new GameScreenInputHandler(game,this));
 
-        inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(new InputHandler(game,this));
-
-        /**
-         * Load the map and split each layer into a map layer
-         */
 
         board = new Board("./assets/testMap.tmx");
 

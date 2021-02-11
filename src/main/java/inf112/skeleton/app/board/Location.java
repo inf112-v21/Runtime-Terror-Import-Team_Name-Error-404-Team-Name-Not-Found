@@ -1,7 +1,5 @@
 package inf112.skeleton.app.board;
 
-import com.badlogic.gdx.math.Vector2;
-
 public class Location {
     private final IntVector position;
     private final Direction direction;
