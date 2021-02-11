@@ -5,6 +5,7 @@ public interface ICards {
 
     /**
      * give cards to player form cardstack
+     * get the deck of cards
      */
     ICards getCards();
 

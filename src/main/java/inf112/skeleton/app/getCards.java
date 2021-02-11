@@ -20,9 +20,6 @@ package inf112.skeleton.app;
     public String toString() {
         return super.toString().replace("_", " ");
     }
-
-
-
 }*/
 
 import java.util.ArrayList;
