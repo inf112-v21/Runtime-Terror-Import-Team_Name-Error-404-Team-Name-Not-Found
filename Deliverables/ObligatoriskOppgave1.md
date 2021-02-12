@@ -189,7 +189,7 @@ flag, startposisjoner, skiftenøkkel, hammer og skiftenøkkel, Spiller hud (UI),
     - Akseptansekriterier:
     Spilleren må kunne trykke på en knapp for å kunne få opp menyen til spillet.
     - Arbeidsoppgave:
-        - [ ] Lage logikk og vise visuelt en pausemeny som pauser spillet
+        - [ ] Lage logikk og vise visuelt en pausemeny som pauser spillet 
         - [ ] Lage logikk og vise visuelt en knapp som tar en tilbake til hovedmenyen
         - [ ] Lage logikk og vise visuelt en knapp som avslutter spillet 
 12. Som utvikler trenger jeg å kunne bruke piltaster/WASD for å bevege en robot for å kunne bevege roboten til flagget:

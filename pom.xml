@@ -44,6 +44,12 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+          <version>RELEASE</version>
+          <scope>test</scope>
+      </dependency>
   </dependencies>
 
   <build>
@@ -90,5 +96,17 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+    <resources>
+      <resource>
+        <directory>${basedir}/assets</directory>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${basedir}/assets</directory>
+      </testResource>
+    </testResources>
+
   </build>
 </project>
