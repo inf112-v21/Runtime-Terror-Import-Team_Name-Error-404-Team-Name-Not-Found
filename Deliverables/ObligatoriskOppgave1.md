@@ -230,8 +230,8 @@ Planlagt:
 Gjort:
 1. Ble ferdig jobbet og commited til prosjektet.
 2. Ble jobbet med men ikke noe ferdig kode, endte med at vi ikke fikk noen commits til githuben til gruppen.
-3. Alle møtene ble skrevet ned, Ansvaret ble senere gitt over til. 
-4. Endte med at det ikke ble brukt i prosjektet.
+3. Alle møtene ble skrevet ned, Ansvaret ble senere gitt over til alle. Fordi medlem trakk seg fra faget. 
+4. Endte med at det ikke ble brukt i prosjektet. Fordi vi begynte å kode før vi skrev tester.
 5. Møtene etter timene måtte flyttes til senere på dagen for at det skulle passe for alle. 
 6. Martin hadde startet å skrive innleveringen før vi fikk fordelt ansvarene skikkelig, så han endte med å skrive den ferdig.
 7. Prosjektbrettet var ikke så bra satt opp i starten, så ble ikke brukt veldig aktivt i starten men ble bedre utover uken.
