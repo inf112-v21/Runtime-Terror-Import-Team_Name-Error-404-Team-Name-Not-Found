@@ -235,3 +235,8 @@ Gjort:
 5. Møtene etter timene måtte flyttes til senere på dagen for at det skulle passe for alle. 
 6. Martin hadde startet å skrive innleveringen før vi fikk fordelt ansvarene skikkelig, så han endte med å skrive den ferdig.
 7. Prosjektbrettet var ikke så bra satt opp i starten, så ble ikke brukt veldig aktivt i starten men ble bedre utover uken.
+
+Det å programmere sammen førte til at det ble enklere å skrive kode, som var forstålig for den andre parten.
+Thomas og Kim har parprogrammert mye sammen for å klare MVP kravene, og de fikk mest fremgang når man kodet sammen.
+Vi burde vi bli flinkere til å ta utgangspunk i brukerhistorier og tester før vi begynner å kode. Slik det var i starten så
+begynte vi å kode bare for å se hvordan ting fungerer for i ettertid skrive brukerhistorier og tester.
