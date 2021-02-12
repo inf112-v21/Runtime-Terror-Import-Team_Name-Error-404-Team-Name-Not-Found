@@ -95,14 +95,7 @@ Vi skal hovedsaklig skrive objektorientert kode med engelske variabelnavn og kom
 
 ## Oppgave 3 - Oversikt over MVP
 
-
-- [ ] Lage en spesifikasjon som inneholder:
-    - [x] En liste over brukerhistorier til spillet basert på MVP kravene
-        - [ ] Hver brukerhistorier skal ha akseptansekriterier og arbeidsoppgaver
-        - [ ] Skal ha beskrivelse av hvilket krav brukerhistorien oppfyller (dette er noe som vi legger til brukerhistorien når)
-
-
-## Spesifikasjonen vår :D
+## Spesifikasjonen vår
 
 ### Overordnede mål 
 
