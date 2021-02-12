@@ -1,7 +1,8 @@
 package inf112.skeleton.app;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 /**
  * Unit test for simple App.

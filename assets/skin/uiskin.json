@@ -1,0 +1,19 @@
+{
+  "com.badlogic.gdx.graphics.g2d.BitmapFont": {
+    "default-font": {
+      "file": arial_black.fnt
+    }
+  },
+  "com.badlogic.gdx.scenes.ui.TextButton$TextButtonStyle": {
+    "default": {
+      "down": default-round-down,
+      "up": default-round,
+      "font": default-font
+    }
+  },
+  "com.badlogix.gdx.scenes.scene2d.ui.Windows$WindowStyle": {
+    "default": {
+      "titleFont": default-font
+    }
+  }
+}
