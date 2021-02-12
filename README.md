@@ -18,4 +18,4 @@ You move around by using the arrow keys or A,W,S,D keys
 The goal is at this moment in development to get to any flag to win, but be careful if you set on a hole you die.
 
 ## Known bugs
-None so far (2021-02-11)
+nullpointerexception bug when closing the program, cant dispose properly (2021-02-12) 
