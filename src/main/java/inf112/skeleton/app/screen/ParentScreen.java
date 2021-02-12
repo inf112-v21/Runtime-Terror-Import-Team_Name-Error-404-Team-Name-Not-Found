@@ -4,13 +4,24 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import inf112.skeleton.app.InputHandler;
 import inf112.skeleton.app.RoboRally;
 
+
+/**
+ * This is the parent class for the different screens.
+ *
+ * it is very primitive and contains stuff that is needed for all the different screens
+ *
+ * It stores the game and stage, sets up an input multiplexer
+ * and do some basic renders, clearing the screen first.
+ *
+ */
 public class ParentScreen implements Screen {
     RoboRally game;
+    SpriteBatch spriteBatch;
     Stage stage;
 
     InputMultiplexer inputMultiplexer;
@@ -18,10 +29,10 @@ public class ParentScreen implements Screen {
 
     public ParentScreen(RoboRally aGame) {
         game = aGame;
+
         stage = new Stage(new ScreenViewport());
 
         inputMultiplexer = new InputMultiplexer();
-        inputMultiplexer.addProcessor(new InputHandler(game));
         inputMultiplexer.addProcessor(stage);
 
     }
@@ -34,11 +45,6 @@ public class ParentScreen implements Screen {
 
     @Override
     public void render(float v) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-        stage.act();
-        stage.draw();
     }
 
     @Override

@@ -1,76 +1,84 @@
 package inf112.skeleton.app.screen;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.RoboRally;
+import inf112.skeleton.app.board.Board;
+import inf112.skeleton.app.board.Direction;
+import inf112.skeleton.app.board.IntVector;
+import inf112.skeleton.app.board.Location;
+import inf112.skeleton.app.inputHandlers.GameScreenInputHandler;
+import inf112.skeleton.app.object.Robot;
 
 public class GameScreen extends ParentScreen {
-    private TiledMap map_TiledMap;
-    private TiledMapTileLayer board_MapLayer;
-    private TiledMapTileLayer holes_MapLayer;
-    private TiledMapTileLayer flags_MapLayer;
-    private TiledMapTileLayer players_MapLayer;
+    Board board;
 
     OrthogonalTiledMapRenderer renderer;
     OrthographicCamera camera;
 
-    private float MAP_SIZE_X;
-    private float MAP_SIZE_Y;
-    private float TILE_SIZE;
+    public Robot robot;
 
 
     public GameScreen(RoboRally aGame) {
         super(aGame);
 
-        /**
-         * Load the map and split each layer into a map layer
+        /*
+         * Adds det inputhandler for the game inputs to te multiplexer
          */
-        map_TiledMap = new TmxMapLoader().load("./assets/map_001.tmx");
+        inputMultiplexer.addProcessor(new GameScreenInputHandler(game,this));
 
-        board_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Board");
-        holes_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Holes");
-        flags_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Flags");
-        players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
-
-        /**
-         * Defines the size of the map and resolution of the tiles
+        /*
+         * Create the board, this class also renders the map
          */
-        MAP_SIZE_X = 12;
-        MAP_SIZE_Y = 12;
-        TILE_SIZE = 300;
+        board = new Board("./assets/testMap.tmx");
 
-        /**
+        /*
          * set up the camera
          */
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, MAP_SIZE_X, MAP_SIZE_Y);
-        camera.update();
+        camera.setToOrtho(false, (float) board.getHeight(), (float) board.getWidth());
 
-        /**
+        /*
          * Render the tiles on to the camera
          */
-        renderer = new OrthogonalTiledMapRenderer(map_TiledMap, 1/TILE_SIZE);
+        renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/(float) board.getTileHeight());
         renderer.setView(camera);
 
-        /**
-         *
-         */
-
-
+        robot = new Robot(new Location(new IntVector(1,1),Direction.NORTH), "assets/player.png", board);
     }
 
     @Override
     public void show() {
         super.show();
+        robot.draw();
     }
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+
+        /*
+         * clearing the screen before everything is redrawn
+         */
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        camera.update();
         renderer.render();
+
+        stage.act();
+        stage.draw();
+
+
+        /*
+         * Here we check the win and death condition.
+         */
+        if (board.checkWin(robot)){
+            robot.onWin();
+        }
+        if (board.checkHole(robot)){
+            robot.onDeath();
+        }
     }
 }
