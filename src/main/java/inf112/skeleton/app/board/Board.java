@@ -28,7 +28,7 @@ public class Board {
     private int width;
     private int tileHeight;
 
-    /*
+    /**
      * construct a game board form the map that is inputted with a filename
      *
      * @param fileName a map file
@@ -89,7 +89,7 @@ public class Board {
 
     }
 
-    /**
+    /*
      * check the entire map for all the flags and adds them to a list of flags
      *
      */
@@ -119,7 +119,7 @@ public class Board {
         }
     }
 
-    /**
+    /*
      * check all the holes on the hole layer and adds them to the hole list.
      */
     private void initHoles() {
