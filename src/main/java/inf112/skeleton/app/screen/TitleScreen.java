@@ -55,9 +55,9 @@ public class TitleScreen extends ParentScreen{
          * Title label
          */
         int row_height = Gdx.graphics.getWidth() / 12;
-        Label title = new Label("Title",labelStyle);
+        Label title = new Label("RoboRally",labelStyle);
         title.setSize(Gdx.graphics.getWidth(),row_height);
-        title.setPosition(0,Gdx.graphics.getHeight()-row_height*2);
+        title.setPosition(0,Gdx.graphics.getHeight()-row_height*3);
         title.setAlignment(Align.center);
 
         /**

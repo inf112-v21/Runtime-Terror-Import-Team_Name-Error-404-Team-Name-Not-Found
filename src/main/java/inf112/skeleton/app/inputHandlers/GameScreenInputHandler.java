@@ -25,24 +25,28 @@ public class GameScreenInputHandler extends InputAdapter {
                 game.pauseGame();
                 break;
             case Input.Keys.UP:
+            case Input.Keys.W:
                 if (screen != null) {
                     screen.robot.walk("up");
                     game.render();
                 }
                 break;
             case Input.Keys.LEFT:
+            case Input.Keys.A:
                 if (screen != null) {
                     screen.robot.walk("left");
                     game.render();
                 }
                 break;
             case Input.Keys.RIGHT:
+            case Input.Keys.D:
                 if (screen != null) {
                     screen.robot.walk("right");
                     game.render();
                 }
                 break;
             case Input.Keys.DOWN:
+            case Input.Keys.S:
                 if (screen != null) {
                     screen.robot.walk("down");
                     game.render();
