@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import inf112.skeleton.app.RoboRally;
@@ -20,6 +21,7 @@ import inf112.skeleton.app.RoboRally;
  */
 public class ParentScreen implements Screen {
     RoboRally game;
+    SpriteBatch spriteBatch;
     Stage stage;
 
     InputMultiplexer inputMultiplexer;
@@ -43,14 +45,6 @@ public class ParentScreen implements Screen {
 
     @Override
     public void render(float v) {
-        /**
-         * clearing the screen before everything is redrawn
-         */
-        Gdx.gl.glClearColor(1, 1, 1, 1);
-        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
-
-        stage.act();
-        stage.draw();
     }
 
     @Override

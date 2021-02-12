@@ -2,7 +2,12 @@ package inf112.skeleton.app.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL30;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -20,6 +25,12 @@ import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
  */
 public class TitleScreen extends ParentScreen{
 
+    Texture backgroundTexture;
+    Sprite backgroundSprite;
+    SpriteBatch spriteBatch;
+
+
+
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
@@ -29,6 +40,16 @@ public class TitleScreen extends ParentScreen{
         BitmapFont myFont = new BitmapFont(Gdx.files.internal("skin/arial_black.fnt"));
         labelStyle.font = myFont;
         labelStyle.fontColor = Color.RED;
+
+        /**
+         * Background
+         */
+
+        backgroundTexture = new Texture("assets/Robot.png");
+        backgroundSprite = new Sprite(backgroundTexture);
+        spriteBatch = new SpriteBatch();
+
+
 
         /**
          * Title label
@@ -60,7 +81,6 @@ public class TitleScreen extends ParentScreen{
             }
         });
 
-
         /**
          * Add the elements to the stage
          */
@@ -76,7 +96,19 @@ public class TitleScreen extends ParentScreen{
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+        /**
+         * clearing the screen before everything is redrawn
+         */
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        spriteBatch.begin();
+            backgroundSprite.draw(spriteBatch);
+        spriteBatch.end();
+
+
+        stage.act();
+        stage.draw();
     }
 
     @Override

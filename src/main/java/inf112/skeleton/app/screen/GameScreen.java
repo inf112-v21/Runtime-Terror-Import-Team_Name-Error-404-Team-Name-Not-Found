@@ -1,5 +1,7 @@
 package inf112.skeleton.app.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import inf112.skeleton.app.RoboRally;
@@ -30,14 +32,13 @@ public class GameScreen extends ParentScreen {
         /**
          * Create the board, this class also renders the map
          */
-        board = new Board("./assets/map_001.tmx");
+        board = new Board("./assets/testMap.tmx");
 
         /**
          * set up the camera
          */
         camera = new OrthographicCamera();
         camera.setToOrtho(false, (float) board.getHeight(), (float) board.getWidth());
-        camera.update();
 
         /**
          * Render the tiles on to the camera
@@ -56,8 +57,18 @@ public class GameScreen extends ParentScreen {
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+
+        /**
+         * clearing the screen before everything is redrawn
+         */
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        camera.update();
         renderer.render();
+
+        stage.act();
+        stage.draw();
 
 
         /**
