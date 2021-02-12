@@ -19,7 +19,7 @@ public class Board {
 
     public TiledMap map_TiledMap;
 
-    private TiledMapTileLayer board_MapLayer;
+    public TiledMapTileLayer board_MapLayer;
     public TiledMapTileLayer players_MapLayer;
     private TiledMapTileLayer flags_MapLayer;
     private TiledMapTileLayer holes_MapLayer;
@@ -47,8 +47,8 @@ public class Board {
 
 
 
-        flags = new ArrayList<Flag>();
-        holes = new ArrayList<Hole>();
+        flags = new ArrayList<>();
+        holes = new ArrayList<>();
 
         initFlags();
         initHoles();
@@ -56,7 +56,8 @@ public class Board {
 
 
     /*
-     * for tests
+     * construct a game board with a empty map
+     * used for tests and development
      */
     public Board(int width, int height) {
         map_TiledMap = new TiledMap();
@@ -81,8 +82,8 @@ public class Board {
         this.height = height;
         this.width = width;
 
-        flags = new ArrayList<Flag>();
-        holes = new ArrayList<Hole>();
+        flags = new ArrayList<>();
+        holes = new ArrayList<>();
 
         this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 

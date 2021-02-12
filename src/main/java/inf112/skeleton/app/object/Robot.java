@@ -49,10 +49,11 @@ public class Robot {
     }
 
     /**
-     * For testing
+     * construct a robot with a empty map
+     * used for tests and development
      *
-     * @param location
-     * @param aBoard
+     * @param location - an location
+     * @param aBoard - a board
      */
     public Robot(Location location, Board aBoard) {
         this.location = location;
@@ -126,9 +127,7 @@ public class Robot {
      */
     public boolean onBoard(int x, int y) {
         if (x >= 0 && x < board.getHeight()) {
-            if(y >= 0 && y < board.getWidth()){
-                return true;
-            }
+            return y >= 0 && y < board.getWidth();
         }
         return false;
     }

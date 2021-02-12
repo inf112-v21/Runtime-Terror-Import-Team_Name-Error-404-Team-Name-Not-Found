@@ -1,7 +1,5 @@
 package inf112.skeleton.app.board;
 
-import com.badlogic.gdx.math.Vector2;
-
 /**
  * location of a object that shows what way its facing and where it is
  */

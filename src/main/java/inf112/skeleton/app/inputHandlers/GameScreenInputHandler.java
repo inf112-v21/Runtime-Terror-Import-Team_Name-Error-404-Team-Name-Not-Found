@@ -53,6 +53,7 @@ public class GameScreenInputHandler extends InputAdapter {
                 }
                 break;
             default:
+                break;
 
         }
         return true;
