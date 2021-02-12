@@ -29,6 +29,4 @@ public class BoardTest extends TestCase {
         assertTrue(board.checkHole(robot));
     }
 
-
-
 }

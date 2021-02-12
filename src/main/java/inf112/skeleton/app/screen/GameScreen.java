@@ -24,23 +24,23 @@ public class GameScreen extends ParentScreen {
     public GameScreen(RoboRally aGame) {
         super(aGame);
 
-        /**
+        /*
          * Adds det inputhandler for the game inputs to te multiplexer
          */
         inputMultiplexer.addProcessor(new GameScreenInputHandler(game,this));
 
-        /**
+        /*
          * Create the board, this class also renders the map
          */
         board = new Board("./assets/testMap.tmx");
 
-        /**
+        /*
          * set up the camera
          */
         camera = new OrthographicCamera();
         camera.setToOrtho(false, (float) board.getHeight(), (float) board.getWidth());
 
-        /**
+        /*
          * Render the tiles on to the camera
          */
         renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/(float) board.getTileHeight());
@@ -58,7 +58,7 @@ public class GameScreen extends ParentScreen {
     @Override
     public void render(float delta) {
 
-        /**
+        /*
          * clearing the screen before everything is redrawn
          */
         Gdx.gl.glClearColor(1, 1, 1, 1);
@@ -71,7 +71,7 @@ public class GameScreen extends ParentScreen {
         stage.draw();
 
 
-        /**
+        /*
          * Here we check the win and death condition.
          */
         if (board.checkWin(robot)){

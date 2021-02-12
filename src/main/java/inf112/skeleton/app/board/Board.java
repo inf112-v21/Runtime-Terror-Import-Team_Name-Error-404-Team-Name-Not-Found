@@ -28,7 +28,7 @@ public class Board {
     private int width;
     private int tileHeight;
 
-    /**
+    /*
      * construct a game board form the map that is inputted with a filename
      *
      * @param fileName a map file
@@ -55,7 +55,7 @@ public class Board {
     }
 
 
-    /**
+    /*
      * for tests
      */
     public Board(int width, int height) {
@@ -97,7 +97,7 @@ public class Board {
             for (int x = 0; x < width; x++){
                 TiledMapTileLayer.Cell cell = flags_MapLayer.getCell(x, y);
                 if (cell != null) {
-                    switch ((int) cell.getTile().getId()) {
+                    switch (cell.getTile().getId()) {
                         case 49:
                             flags.add(new Flag(new Location(x, y, Direction.NORTH), 1));
                             break;
@@ -126,7 +126,7 @@ public class Board {
             for (int x = 0; x < width; x++){
                 TiledMapTileLayer.Cell cell = holes_MapLayer.getCell(x, y);
                 if (cell != null) {
-                    if ((int) cell.getTile().getId() == 6) {
+                    if (cell.getTile().getId() == 6) {
                         holes.add(new Hole(new Location(x, y, Direction.NORTH)));
                     }
                 }
