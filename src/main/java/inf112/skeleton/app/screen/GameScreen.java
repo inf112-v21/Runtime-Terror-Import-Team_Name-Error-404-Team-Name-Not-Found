@@ -74,10 +74,10 @@ public class GameScreen extends ParentScreen {
         /**
          * Here we check the win and death condition.
          */
-        if (board.checkWin(robot.getPosition().getX(),robot.getPosition().getY())){
+        if (board.checkWin(robot)){
             robot.onWin();
         }
-        if (board.checkHole(robot.getPosition().getX(),robot.getPosition().getY())){
+        if (board.checkHole(robot)){
             robot.onDeath();
         }
     }

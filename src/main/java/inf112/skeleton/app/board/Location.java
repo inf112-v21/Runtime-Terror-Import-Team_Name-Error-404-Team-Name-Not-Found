@@ -1,11 +1,13 @@
 package inf112.skeleton.app.board;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * location of a object that shows what way its facing and where it is
  */
 public class Location {
-    private final IntVector position;
-    private final Direction direction;
+    private IntVector position;
+    private Direction direction;
 
     public Location(IntVector pos, Direction dir){
         this.position = pos;

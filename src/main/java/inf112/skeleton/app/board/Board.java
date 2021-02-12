@@ -14,10 +14,10 @@ import inf112.skeleton.app.object.Robot;
 import java.util.ArrayList;
 
 public class Board {
-    private ArrayList<Flag> flags;
-    private ArrayList<Hole> holes;
+    public ArrayList<Flag> flags;
+    public ArrayList<Hole> holes;
 
-    private TiledMap map_TiledMap;
+    public TiledMap map_TiledMap;
 
     private TiledMapTileLayer board_MapLayer;
     public TiledMapTileLayer players_MapLayer;
@@ -137,11 +137,11 @@ public class Board {
     /**
      * check if the input (x,y) position mach with the wining flag
      *
-     * @param x x - coordinate
-     * @param y y - coordinate
+     * @param robot the players robot
      * @return return true if matching otherwise false
      */
-    public boolean checkWin(int x, int y){
+    public boolean checkWin(Robot robot){
+        IntVector pos = robot.getPosition();
         for (Flag flag : flags) {
             if (flag.getPosition().getX() == pos.getX() && flag.getPosition().getY() == pos.getY()) {
                 return true;
@@ -156,7 +156,9 @@ public class Board {
      * @param robot the players robot
      * @return return true if matching otherwise false
      */
-    public boolean checkHole(int x, int y) {
+    public boolean checkHole(Robot robot) {
+        IntVector pos = robot.getPosition();
+
         for (Hole hole : holes) {
             if (hole.getPosition().getX() == pos.getX() && hole.getPosition().getY() == pos.getY()) {
                 return true;
