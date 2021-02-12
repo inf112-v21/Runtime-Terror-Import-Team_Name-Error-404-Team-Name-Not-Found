@@ -219,19 +219,19 @@ Arbeidsoppgaver som må bli løst er for å realisere brukerhistoriene:
 ## Prosjekt-retrospektiv
 
 Planlagt:
-1: Gjøre ferdig de fem MVP oppgavene (Thomas og Kim).
-2: Tenkte å komme i gang koden til å dele ut og bruke kort. (utenfor mvp) (Odin og Belmin).
-3: Skrive møtereferater av møtene vi har (Belmin).
-4: Prøvde å bruke testdreven metodikk (Gruppen).
-5: Planlagt å ha møter etter hver forelesning og gruppetimen (Grupper) .
-6: Skrive innlevering 1 (Belmin).
-7: Vi skulle bruke prosjektbrettet og Kanban til å styre hva vi jobbet med.
+1. Gjøre ferdig de fem MVP oppgavene (Thomas og Kim).
+2. Tenkte å komme i gang koden til å dele ut og bruke kort. (utenfor mvp) (Odin og Belmin).
+3. Skrive møtereferater av møtene vi har (Belmin).
+4. Prøvde å bruke testdreven metodikk (Gruppen).
+5. Planlagt å ha møter etter hver forelesning og gruppetimen (Grupper) .
+6. Skrive innlevering 1 (Belmin).
+7. Vi skulle bruke prosjektbrettet og Kanban til å styre hva vi jobbet med.
 
 Gjort:
-1: Ble ferdig jobbet og commited til prosjektet.
-2: Ble jobbet med men ikke noe ferdig kode, endte med at vi ikke fikk noen commits til githuben til gruppen.
-3: Alle møtene ble skrevet ned, Ansvaret ble senere gitt over til. 
-4: Endte med at det ikke ble brukt i prosjektet.
-5: Møtene etter timene måtte flyttes til senere på dagen for at det skulle passe for alle. 
-6: Martin hadde startet å skrive innleveringen før vi fikk fordelt ansvarene skikkelig, så han endte med å skrive den ferdig.
-7: Prosjektbrettet var ikke så bra satt opp i starten, så ble ikke brukt veldig aktivt i starten men ble bedre utover uken.
+1. Ble ferdig jobbet og commited til prosjektet.
+2. Ble jobbet med men ikke noe ferdig kode, endte med at vi ikke fikk noen commits til githuben til gruppen.
+3. Alle møtene ble skrevet ned, Ansvaret ble senere gitt over til. 
+4. Endte med at det ikke ble brukt i prosjektet.
+5. Møtene etter timene måtte flyttes til senere på dagen for at det skulle passe for alle. 
+6. Martin hadde startet å skrive innleveringen før vi fikk fordelt ansvarene skikkelig, så han endte med å skrive den ferdig.
+7. Prosjektbrettet var ikke så bra satt opp i starten, så ble ikke brukt veldig aktivt i starten men ble bedre utover uken.
