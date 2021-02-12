@@ -9,7 +9,7 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
-/**
+/*
  * a class for the object Robot
  */
 public class Robot {
@@ -22,7 +22,7 @@ public class Robot {
 
     private Board board;
 
-    /**
+    /*
      * a constructor for the robot object
      *
      * @param location the location of a robot
@@ -80,14 +80,14 @@ public class Robot {
         return this.location.getPosition();
     }
 
-    /**
+    /*
      * removes the robot form the game board
      */
     public void erase(){
         board.players_MapLayer.setCell(location.getPosition().getX(), location.getPosition().getY(), new TiledMapTileLayer.Cell());
     }
 
-    /**
+    /*
      * draws the robot on the game board
      */
     public void draw(){
@@ -132,7 +132,7 @@ public class Robot {
         return false;
     }
 
-    /**
+    /*
      * change the texture of the robot when it has won the game
      *
      */
@@ -142,7 +142,7 @@ public class Robot {
         draw();
     }
 
-    /**
+    /*
      * change the texture of the robot when the robot has died
      *
      */
