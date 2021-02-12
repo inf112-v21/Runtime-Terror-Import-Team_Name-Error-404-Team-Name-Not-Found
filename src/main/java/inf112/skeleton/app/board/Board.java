@@ -1,10 +1,15 @@
 package inf112.skeleton.app.board;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import inf112.skeleton.app.object.Flag;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inf112.skeleton.app.object.Hole;
+import inf112.skeleton.app.object.Robot;
 
 import java.util.ArrayList;
 
@@ -22,7 +27,6 @@ public class Board {
     private int height;
     private int width;
     private int tileHeight;
-    private int numberofflags;
 
     /**
      * construct a game board form the map that is inputted with a filename
@@ -48,8 +52,39 @@ public class Board {
 
         initFlags();
         initHoles();
+    }
 
-        int numberofflags = flags.size();
+
+    /**
+     * for tests
+     */
+    public Board(int width, int height) {
+        map_TiledMap = new TiledMap();
+        map_TiledMap.getProperties().put("width", width);
+        map_TiledMap.getProperties().put("height", height);
+        MapLayers layers = map_TiledMap.getLayers();
+
+        int tileSize = 300;
+        TiledMapTileLayer playerLayer = new TiledMapTileLayer(width, height, tileSize, tileSize);
+        playerLayer.setName("Players");
+        layers.add(playerLayer);
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                playerLayer.setCell(i, j, new TiledMapTileLayer.Cell());
+                TiledMapTile tile = new StaticTiledMapTile(new TextureRegion());
+                tile.getProperties().put("type", "Players");
+                getTileLayer().getCell(i, j).setTile(tile);
+            }
+        }
+
+        this.height = height;
+        this.width = width;
+
+        flags = new ArrayList<Flag>();
+        holes = new ArrayList<Hole>();
+
+        this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
     }
 
@@ -108,7 +143,7 @@ public class Board {
      */
     public boolean checkWin(int x, int y){
         for (Flag flag : flags) {
-            if (flag.getPosition().getX() == x && flag.getPosition().getY() == y) {
+            if (flag.getPosition().getX() == pos.getX() && flag.getPosition().getY() == pos.getY()) {
                 return true;
             }
         }
@@ -118,13 +153,12 @@ public class Board {
     /**
      * check if the input (x,y) position mach with the hole
      *
-     * @param x x - coordinate
-     * @param y y - coordinate
+     * @param robot the players robot
      * @return return true if matching otherwise false
      */
     public boolean checkHole(int x, int y) {
         for (Hole hole : holes) {
-            if (hole.getPosition().getX() == x && hole.getPosition().getY() == y) {
+            if (hole.getPosition().getX() == pos.getX() && hole.getPosition().getY() == pos.getY()) {
                 return true;
             }
         }
@@ -146,6 +180,10 @@ public class Board {
 
     public int getTileHeight(){
         return tileHeight;
+    }
+
+    public TiledMapTileLayer getTileLayer() {
+        return (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
     }
 
     public ArrayList<Flag> getFlags() {

@@ -49,6 +49,23 @@ public class Robot {
     }
 
     /**
+     * For testing
+     *
+     * @param location
+     * @param aBoard
+     */
+    public Robot(Location location, Board aBoard) {
+        this.location = location;
+        this.board = aBoard;
+
+        playerCell_alive = new TiledMapTileLayer.Cell();
+        playerCell_dead = new TiledMapTileLayer.Cell();
+        playerCell_win = new TiledMapTileLayer.Cell();
+
+        cellState = playerCell_alive;
+    }
+
+    /**
      * @return direction the robot is facing
      */
     public Direction getDirection() {
@@ -143,28 +160,28 @@ public class Robot {
      */
     public void walk(String way){
         switch (way){
-            case "up":
+            case "north":
                 if(onBoard(getPosition().getX(), getPosition().getY()+1)) {
                     erase();
                     setLocation(getPosition().getX(), getPosition().getY() + 1);
                     draw();
                 }
                 break;
-            case "right":
+            case "east":
                 if(onBoard(getPosition().getX()+1, getPosition().getY())) {
                     erase();
                     setLocation(getPosition().getX() + 1, getPosition().getY());
                     draw();
                 }
                 break;
-            case "left":
+            case "west":
                 if(onBoard(getPosition().getX()-1, getPosition().getY())) {
                     erase();
                     setLocation(getPosition().getX() - 1, getPosition().getY());
                     draw();
                 }
                 break;
-            case "down":
+            case "south":
                 if(onBoard(getPosition().getX(), getPosition().getY()-1)) {
                     erase();
                     setLocation(getPosition().getX(), getPosition().getY() - 1);
