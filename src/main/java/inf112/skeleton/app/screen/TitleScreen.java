@@ -1,13 +1,10 @@
 package inf112.skeleton.app.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -29,33 +26,25 @@ public class TitleScreen extends ParentScreen{
     Sprite backgroundSprite;
     SpriteBatch spriteBatch;
 
-
-
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
-
-
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        BitmapFont myFont = new BitmapFont(Gdx.files.internal("skin/arial_black.fnt"));
-        labelStyle.font = myFont;
-        labelStyle.fontColor = Color.RED;
         
         /*
          * Background
          */
-
         backgroundTexture = new Texture("assets/Robot.png");
         backgroundSprite = new Sprite(backgroundTexture);
         spriteBatch = new SpriteBatch();
 
 
+        int row_height = Gdx.graphics.getWidth() / 12;
+        int center = Gdx.graphics.getWidth()/2;
 
         /*
          * Title label
          */
-        int row_height = Gdx.graphics.getWidth() / 12;
-        Label title = new Label("RoboRally",labelStyle);
+        Label title = new Label("RoboRally", RoboRally.skin, "default");
         title.setSize(Gdx.graphics.getWidth(),row_height);
         title.setPosition(0,Gdx.graphics.getHeight()-row_height*3);
         title.setAlignment(Align.center);
@@ -63,13 +52,10 @@ public class TitleScreen extends ParentScreen{
         /*
          * Play button
          */
-        TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
-        buttonStyle.font = myFont;
-        buttonStyle.fontColor = Color.BLUE;
-        TextButton playButton = new TextButton("Play",buttonStyle);
-        playButton.setWidth(Gdx.graphics.getWidth()/2);
-        playButton.setPosition(Gdx.graphics.getWidth()/2-playButton.getWidth()/2,
-                Gdx.graphics.getHeight()/2-playButton.getHeight()/2);
+        TextButton playButton = new TextButton("Play", RoboRally.skin, "default");
+        playButton.setWidth(center);
+        playButton.setPosition(center-playButton.getWidth()/2,
+                center-playButton.getHeight()/2);
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -86,7 +72,6 @@ public class TitleScreen extends ParentScreen{
          */
         stage.addActor(title);
         stage.addActor(playButton);
-
     }
 
     @Override
@@ -105,7 +90,6 @@ public class TitleScreen extends ParentScreen{
         spriteBatch.begin();
             backgroundSprite.draw(spriteBatch);
         spriteBatch.end();
-
 
         stage.act();
         stage.draw();
