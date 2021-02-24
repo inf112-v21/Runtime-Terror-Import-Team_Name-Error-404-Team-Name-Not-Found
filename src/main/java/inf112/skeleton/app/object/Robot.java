@@ -33,9 +33,7 @@ public class Robot {
         this.location = location;
         this.board = aBoard;
 
-        Texture texture = new Texture(fileName);
-        TextureRegion textureRegion = new TextureRegion();
-        TextureRegion[][] textureRegions = textureRegion.split(texture,300, 300);
+        TextureRegion[][] textureRegions = getRobotTexture(fileName);
 
         playerCell_alive = new TiledMapTileLayer.Cell();
         playerCell_dead = new TiledMapTileLayer.Cell();
@@ -46,6 +44,19 @@ public class Robot {
         playerCell_win.setTile(new StaticTiledMapTile(textureRegions[0][2]));
 
         cellState = playerCell_alive;
+    }
+
+    /**
+     * Loads the Robot texture and return a textured region of the loaded texture
+     *
+     * @param fileName filepath of the texture to be loaded
+     * @return TextureRegion[][] The texture split in 300X300 pixels
+     */
+    private TextureRegion[][] getRobotTexture(String fileName) {
+        Texture texture = new Texture(fileName);
+        TextureRegion textureRegion = new TextureRegion();
+        TextureRegion[][] textureRegions = textureRegion.split(texture,300, 300);
+        return textureRegions;
     }
 
     /**
