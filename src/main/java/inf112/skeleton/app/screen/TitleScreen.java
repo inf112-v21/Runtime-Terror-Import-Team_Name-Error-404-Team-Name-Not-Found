@@ -29,33 +29,51 @@ public class TitleScreen extends ParentScreen{
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
-        
+
+        initBackgroundImage();
+
+        int row_height = Gdx.graphics.getWidth() / 12;
+        int center = Gdx.graphics.getWidth()/2;
+
+        Label title = makeTitleLabel(row_height);
+
+        TextButton playButton = makePlayButton(center);
+
+        /*
+         * Add the elements to the stage
+         */
+        stage.addActor(title);
+        stage.addActor(playButton);
+    }
+
+    private void initBackgroundImage() {
         /*
          * Background
          */
         backgroundTexture = new Texture("assets/Robot.png");
         backgroundSprite = new Sprite(backgroundTexture);
         spriteBatch = new SpriteBatch();
+    }
 
-
-        int row_height = Gdx.graphics.getWidth() / 12;
-        int center = Gdx.graphics.getWidth()/2;
-
+    private Label makeTitleLabel(int row_height) {
         /*
          * Title label
          */
         Label title = new Label("RoboRally", RoboRally.skin, "default");
-        title.setSize(Gdx.graphics.getWidth(),row_height);
-        title.setPosition(0,Gdx.graphics.getHeight()-row_height*3);
+        title.setSize(Gdx.graphics.getWidth(), row_height);
+        title.setPosition(0,Gdx.graphics.getHeight()- row_height *3);
         title.setAlignment(Align.center);
+        return title;
+    }
 
+    private TextButton makePlayButton(int center) {
         /*
          * Play button
          */
         TextButton playButton = new TextButton("Play", RoboRally.skin, "default");
         playButton.setWidth(center);
-        playButton.setPosition(center-playButton.getWidth()/2,
-                center-playButton.getHeight()/2);
+        playButton.setPosition(center -playButton.getWidth()/2,
+                center -playButton.getHeight()/2);
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -66,12 +84,7 @@ public class TitleScreen extends ParentScreen{
                 return true;
             }
         });
-
-        /*
-         * Add the elements to the stage
-         */
-        stage.addActor(title);
-        stage.addActor(playButton);
+        return playButton;
     }
 
     @Override
