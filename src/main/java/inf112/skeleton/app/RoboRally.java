@@ -9,13 +9,13 @@ import inf112.skeleton.app.screen.TitleScreen;
 public class RoboRally extends Game {
     static public Skin skin;
 
-
     @Override
     public void create() {
+        skin = new Skin(Gdx.files.internal("assets/skin/uiskin.json"));
         this.setScreen(new TitleScreen(this));
     }
 
-    /**
+    /*
      * Games main loop method
      */
     @Override
@@ -28,7 +28,7 @@ public class RoboRally extends Game {
     }
 
 
-    /**
+    /*
      * Game methods
      */
 

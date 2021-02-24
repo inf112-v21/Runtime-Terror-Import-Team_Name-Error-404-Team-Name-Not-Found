@@ -1,19 +1,88 @@
 {
-  "com.badlogic.gdx.graphics.g2d.BitmapFont": {
-    "default-font": {
-      "file": arial_black.fnt
-    }
-  },
-  "com.badlogic.gdx.scenes.ui.TextButton$TextButtonStyle": {
-    "default": {
-      "down": default-round-down,
-      "up": default-round,
-      "font": default-font
-    }
-  },
-  "com.badlogix.gdx.scenes.scene2d.ui.Windows$WindowStyle": {
-    "default": {
-      "titleFont": default-font
-    }
-  }
+"com.badlogic.gdx.graphics.g2d.BitmapFont": {
+	"arial_black": {
+		"file": "arial_black.fnt"
+	}
+},
+"com.badlogic.gdx.graphics.Color": {
+	"black": {
+		"r": 0,
+		"g": 0,
+		"b": 0,
+		"a": 1
+	},
+	"blue": {
+		"r": 0,
+		"g": 0,
+		"b": 1,
+		"a": 1
+	},
+	"cyan": {
+		"r": 0,
+		"g": 1,
+		"b": 1,
+		"a": 1
+	},
+	"green": {
+		"r": 0,
+		"g": 1,
+		"b": 0,
+		"a": 1
+	},
+	"purple": {
+		"r": 1,
+		"g": 0,
+		"b": 1,
+		"a": 1
+	},
+	"red": {
+		"r": 1,
+		"g": 0,
+		"b": 0,
+		"a": 1
+	},
+	"white": {
+		"r": 1,
+		"g": 1,
+		"b": 1,
+		"a": 1
+	},
+	"yellow": {
+		"r": 1,
+		"g": 1,
+		"b": 0,
+		"a": 1
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
+	"default": {
+		"font": "arial_black",
+		"fontColor": "black"
+	}
+}
+"com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
+	"default": {
+		"font": "arial_black",
+		"fontColor": "blue",
+		"downFontColor": "red",
+		"overFontColor": "black"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
+	"default": {
+		"font": "arial_black",
+		"fontColor": "black"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle": {
+	"default": {
+		"label": "default"
+	}
+},
+"com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle": {
+	"default": {
+		"titleFont": "arial_black",
+		"titleFontColor": "black"
+	}
+}
 }
