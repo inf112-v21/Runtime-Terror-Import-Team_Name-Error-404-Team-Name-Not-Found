@@ -157,9 +157,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
+                            board.checkBelts(this);
                         }
                     }
                 }
+
                 break;
             case "east":
                 Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
@@ -169,9 +171,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
+                            board.checkBelts(this);
                         }
                     }
                 }
+
                 break;
             case "west":
                 Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
@@ -181,9 +185,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
+                            board.checkBelts(this);
                         }
                     }
                 }
+
                 break;
             case "south":
                 Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
@@ -193,9 +199,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
+                            board.checkBelts(this);
                         }
                     }
                 }
+
                 break;
             default:
                 break;

@@ -5,7 +5,7 @@ import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
 public class Wall {
-    private Location location;
+    private final Location location;
 
 
     public Wall(Location pos) {

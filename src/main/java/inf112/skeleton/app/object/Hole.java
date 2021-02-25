@@ -7,7 +7,7 @@ import inf112.skeleton.app.board.Location;
  * a class for the object hole
  */
 public class Hole {
-    private Location location;
+    private final Location location;
 
 
     public Hole(Location pos) {

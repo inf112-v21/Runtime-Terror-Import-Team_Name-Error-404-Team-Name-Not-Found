@@ -7,8 +7,8 @@ import inf112.skeleton.app.board.Location;
  * a class for the object Flag
  */
 public class Flag {
-    private Location location;
-    private int nr;
+    private final Location location;
+    private final int nr;
 
     public Flag(Location pos, int flagNr) {
         this.location = pos;
