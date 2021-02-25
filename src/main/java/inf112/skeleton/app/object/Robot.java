@@ -9,6 +9,9 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /*
  * a class for the object Robot
  */
@@ -21,7 +24,6 @@ public class Robot {
     public TiledMapTileLayer.Cell playerCell_win;
 
     private Board board;
-
     /**
      * a constructor for the robot object
      *
@@ -145,33 +147,54 @@ public class Robot {
      * @param way they way you want it to move
      */
     public void walk(String way) {
+        Wall wall = board.checkWall(this.getPosition());
         switch (way) {
             case "north":
-                if (onBoard(getPosition().getX(), getPosition().getY() + 1)) {
-                    erase();
-                    setLocation(getPosition().getX(), getPosition().getY() + 1);
-                    draw();
+                Wall nextNorth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() +1));
+                if (wall == null || wall.getDirection() != Direction.NORTH) {
+                    if(nextNorth == null || nextNorth.getDirection() != Direction.SOUTH) {
+                        if (onBoard(getPosition().getX(), getPosition().getY() + 1)) {
+                            erase();
+                            setLocation(getPosition().getX(), getPosition().getY() + 1);
+                            draw();
+                        }
+                    }
                 }
                 break;
             case "east":
-                if (onBoard(getPosition().getX() + 1, getPosition().getY())) {
-                    erase();
-                    setLocation(getPosition().getX() + 1, getPosition().getY());
-                    draw();
+                Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
+                if (wall == null || wall.getDirection() != Direction.EAST) {
+                    if(nextEast == null || nextEast.getDirection() != Direction.WEST) {
+                        if (onBoard(getPosition().getX() + 1, getPosition().getY())) {
+                            erase();
+                            setLocation(getPosition().getX() + 1, getPosition().getY());
+                            draw();
+                        }
+                    }
                 }
                 break;
             case "west":
-                if (onBoard(getPosition().getX() - 1, getPosition().getY())) {
-                    erase();
-                    setLocation(getPosition().getX() - 1, getPosition().getY());
-                    draw();
+                Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
+                if (wall == null || wall.getDirection() != Direction.WEST){
+                    if (nextWest == null || nextWest.getDirection() != Direction.EAST) {
+                        if (onBoard(getPosition().getX() - 1, getPosition().getY())) {
+                            erase();
+                            setLocation(getPosition().getX() - 1, getPosition().getY());
+                            draw();
+                        }
+                    }
                 }
                 break;
             case "south":
-                if (onBoard(getPosition().getX(), getPosition().getY() - 1)) {
-                    erase();
-                    setLocation(getPosition().getX(), getPosition().getY() - 1);
-                    draw();
+                Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
+                if (wall == null || wall.getDirection() != Direction.SOUTH) {
+                    if (nextSouth== null || nextSouth.getDirection() != Direction.NORTH) {
+                        if (onBoard(getPosition().getX(), getPosition().getY() - 1)) {
+                            erase();
+                            setLocation(getPosition().getX(), getPosition().getY() - 1);
+                            draw();
+                        }
+                    }
                 }
                 break;
             default:

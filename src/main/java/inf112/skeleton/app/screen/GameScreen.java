@@ -32,7 +32,7 @@ public class GameScreen extends ParentScreen {
         /*
          * Create the board, this class also renders the map
          */
-        board = new Board("./assets/testMap.tmx");
+        board = new Board("./assets/map_001.tmx");
 
         /*
          * set up the camera

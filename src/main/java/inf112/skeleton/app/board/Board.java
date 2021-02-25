@@ -10,12 +10,15 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import inf112.skeleton.app.object.Hole;
 import inf112.skeleton.app.object.Robot;
+import inf112.skeleton.app.object.Wall;
 
 import java.util.ArrayList;
 
 public class Board {
     public ArrayList<Flag> flags;
     public ArrayList<Hole> holes;
+    public ArrayList<Wall> walls;
+    public ArrayList<Object> neighbor;
 
     public TiledMap map_TiledMap;
 
@@ -23,9 +26,10 @@ public class Board {
     public TiledMapTileLayer players_MapLayer;
     private TiledMapTileLayer flags_MapLayer;
     private TiledMapTileLayer holes_MapLayer;
+    private TiledMapTileLayer walls_MapLayer;
 
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
     private int tileHeight;
 
     /*
@@ -44,14 +48,17 @@ public class Board {
         players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
         flags_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Flags");
         holes_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Holes");
+        walls_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Walls");
 
 
 
         flags = new ArrayList<>();
         holes = new ArrayList<>();
+        walls = new ArrayList<>();
 
         initFlags();
         initHoles();
+        initWalls();
     }
 
 
@@ -84,6 +91,7 @@ public class Board {
 
         flags = new ArrayList<>();
         holes = new ArrayList<>();
+        walls = new ArrayList<>();
 
         this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
@@ -135,6 +143,32 @@ public class Board {
         }
     }
 
+    private void initWalls() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = walls_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 28:
+                            walls.add(new Wall(new Location(x, y, Direction.NORTH)));
+                            break;
+                        case 27:
+                            walls.add(new Wall(new Location(x, y, Direction.WEST)));
+                            break;
+                        case 26:
+                            walls.add(new Wall(new Location(x, y, Direction.SOUTH)));
+                            break;
+                        case 21:
+                            walls.add(new Wall(new Location(x, y, Direction.EAST)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * check if the input (x,y) position mach with the wining flag
      *
@@ -144,7 +178,7 @@ public class Board {
     public boolean checkWin(Robot robot){
         IntVector pos = robot.getPosition();
         for (Flag flag : flags) {
-            if (flag.getPosition().getX() == pos.getX() && flag.getPosition().getY() == pos.getY()) {
+            if (flag.getPosition().equals(pos)) {
                 return true;
             }
         }
@@ -161,11 +195,20 @@ public class Board {
         IntVector pos = robot.getPosition();
 
         for (Hole hole : holes) {
-            if (hole.getPosition().getX() == pos.getX() && hole.getPosition().getY() == pos.getY()) {
+            if (hole.getPosition().equals(pos)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public Wall checkWall(IntVector pos){
+
+        for (Wall wall: walls){
+            if (wall.getPosition().equals(pos))
+                return wall;
+        }
+        return null;
     }
 
 
