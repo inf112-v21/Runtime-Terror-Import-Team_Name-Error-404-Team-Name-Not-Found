@@ -276,24 +276,32 @@ public class Board {
             if (belt.getPosition().equals(pos)){
                 switch (belt.getDirection()){
                     case NORTH:
-                        robot.erase();
-                        robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
-                        robot.draw();
+                        if(robot.onBoard(pos.getX(), pos.getY() - 1)) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
+                            robot.draw();
+                        }
                         break;
                     case EAST:
-                        robot.erase();
-                        robot.setLocation(robot.getPosition().getX()+ 1, robot.getPosition().getY() );
-                        robot.draw();
+                        if(robot.onBoard(pos.getX() +1, pos.getY())) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
+                            robot.draw();
+                        }
                         break;
                     case WEST:
-                        robot.erase();
-                        robot.setLocation(robot.getPosition().getX()- 1, robot.getPosition().getY() );
-                        robot.draw();
+                        if(robot.onBoard(pos.getX() -1, pos.getY())) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
+                            robot.draw();
+                        }
                         break;
                     case SOUTH:
-                        robot.erase();
-                        robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
-                        robot.draw();
+                        if(robot.onBoard(pos.getX(), pos.getY() -1)) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
+                            robot.draw();
+                        }
                         break;
                     default:
                         break;
@@ -308,24 +316,32 @@ public class Board {
                 if (belt.getPosition().equals(pos)){
                     switch (belt.getDirection()){
                         case NORTH:
-                            robot.erase();
-                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
-                            robot.draw();
+                            if(robot.onBoard(pos.getX() , pos.getY()+1)) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
+                                robot.draw();
+                            }
                             break;
                         case EAST:
-                            robot.erase();
-                            robot.setLocation(robot.getPosition().getX()+ 1, robot.getPosition().getY() );
-                            robot.draw();
+                            if(robot.onBoard(pos.getX() +1, pos.getY())) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
+                                robot.draw();
+                            }
                             break;
                         case WEST:
-                            robot.erase();
-                            robot.setLocation(robot.getPosition().getX()- 1, robot.getPosition().getY() );
-                            robot.draw();
+                            if(robot.onBoard(pos.getX() -1, pos.getY())) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
+                                robot.draw();
+                            }
                             break;
                         case SOUTH:
-                            robot.erase();
-                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
-                            robot.draw();
+                            if(robot.onBoard(pos.getX() , pos.getY()-1)) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
+                                robot.draw();
+                            }
                             break;
                         default:
                             break;
