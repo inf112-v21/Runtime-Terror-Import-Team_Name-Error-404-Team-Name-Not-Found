@@ -157,8 +157,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
+                            IntVector pos = this.getPosition();
                             board.checkBelts(this);
-                            board.checkExpressBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
                         }
                     }
                 }
@@ -172,8 +175,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
+                            IntVector pos = this.getPosition();
                             board.checkBelts(this);
-                            board.checkExpressBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
                         }
                     }
                 }
@@ -187,8 +193,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
+                            IntVector pos = this.getPosition();
                             board.checkBelts(this);
-                            board.checkExpressBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
                         }
                     }
                 }
@@ -202,8 +211,11 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
+                            IntVector pos = this.getPosition();
                             board.checkBelts(this);
-                            board.checkExpressBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
                         }
                     }
                 }
