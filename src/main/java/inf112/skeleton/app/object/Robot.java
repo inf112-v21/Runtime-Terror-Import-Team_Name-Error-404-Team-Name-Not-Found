@@ -107,19 +107,6 @@ public class Robot {
         this.location = new Location(x, y, location.getDirection());
     }
 
-    /**
-     * check if the given (x,y) posision is on the board
-     *
-     * @param x - x coordinate
-     * @param y - Y coordinate
-     * @return false if outside the board
-     */
-    public boolean onBoard(int x, int y) {
-        if (x >= 0 && x < board.getHeight()) {
-            return y >= 0 && y < board.getWidth();
-        }
-        return false;
-    }
 
     /*
      * change the texture of the robot when it has won the game
@@ -142,7 +129,7 @@ public class Robot {
     }
 
     /**
-     * moves the robot to 1 tile in 4 directions up, down, left and right
+     * moves the robot to 1 tile in 4 directions up, down, left and right and check for belts
      *
      * @param way they way you want it to move
      */
@@ -153,7 +140,7 @@ public class Robot {
                 Wall nextNorth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() +1));
                 if (wall == null || wall.getDirection() != Direction.NORTH) {
                     if(nextNorth == null || nextNorth.getDirection() != Direction.SOUTH) {
-                        if (onBoard(getPosition().getX(), getPosition().getY() + 1)) {
+                        if (board.onBoard(getPosition().getX(), getPosition().getY() + 1)) {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
@@ -171,7 +158,7 @@ public class Robot {
                 Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
                 if (wall == null || wall.getDirection() != Direction.EAST) {
                     if(nextEast == null || nextEast.getDirection() != Direction.WEST) {
-                        if (onBoard(getPosition().getX() + 1, getPosition().getY())) {
+                        if (board.onBoard(getPosition().getX() + 1, getPosition().getY())) {
                             erase();
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
@@ -189,7 +176,7 @@ public class Robot {
                 Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
                 if (wall == null || wall.getDirection() != Direction.WEST){
                     if (nextWest == null || nextWest.getDirection() != Direction.EAST) {
-                        if (onBoard(getPosition().getX() - 1, getPosition().getY())) {
+                        if (board.onBoard(getPosition().getX() - 1, getPosition().getY())) {
                             erase();
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
@@ -207,7 +194,7 @@ public class Robot {
                 Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
                 if (wall == null || wall.getDirection() != Direction.SOUTH) {
                     if (nextSouth== null || nextSouth.getDirection() != Direction.NORTH) {
-                        if (onBoard(getPosition().getX(), getPosition().getY() - 1)) {
+                        if (board.onBoard(getPosition().getX(), getPosition().getY() - 1)) {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
@@ -219,7 +206,6 @@ public class Robot {
                         }
                     }
                 }
-
                 break;
             default:
                 break;

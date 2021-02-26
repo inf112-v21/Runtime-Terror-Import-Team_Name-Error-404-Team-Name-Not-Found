@@ -101,6 +101,9 @@ public class Board {
     }
 
 
+    /**
+     * runs true all the init modules
+     */
     public void initLists(){
         initFlags();
         initHoles();
@@ -156,6 +159,9 @@ public class Board {
         }
     }
 
+    /**
+     * check all the walls on the hole layer and adds them to the walls list.
+     */
     private void initWalls() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
@@ -182,6 +188,10 @@ public class Board {
         }
     }
 
+    /**
+     * check all the belts on the hole layer and adds them to the belts list.
+     *
+     */
     private void initBelts() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
@@ -210,6 +220,10 @@ public class Board {
         }
     }
 
+    /**
+     * check all the express belts on the hole layer and adds them to the express belts list.
+     *
+     */
     public void initExpressBelts() {
         for (int y = 0; y < height; y++){
             for (int x = 0; x < width; x++){
@@ -270,34 +284,39 @@ public class Board {
         return false;
     }
 
+    /**
+     * check if a robot is on a express belt and if it is. move the robot
+     *
+     * @param robot the robot that should be moved
+     */
     public void checkBelts(Robot robot){
         IntVector pos = robot.getPosition();
         for (Belt belt: belts) {
             if (belt.getPosition().equals(pos)){
                 switch (belt.getDirection()){
                     case NORTH:
-                        if(robot.onBoard(pos.getX(), pos.getY() - 1)) {
+                        if(onBoard(pos.getX(), pos.getY() - 1)) {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
                             robot.draw();
                         }
                         break;
                     case EAST:
-                        if(robot.onBoard(pos.getX() +1, pos.getY())) {
+                        if(onBoard(pos.getX() +1, pos.getY())) {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
                             robot.draw();
                         }
                         break;
                     case WEST:
-                        if(robot.onBoard(pos.getX() -1, pos.getY())) {
+                        if(onBoard(pos.getX() -1, pos.getY())) {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
                             robot.draw();
                         }
                         break;
                     case SOUTH:
-                        if(robot.onBoard(pos.getX(), pos.getY() -1)) {
+                        if(onBoard(pos.getX(), pos.getY() -1)) {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
                             robot.draw();
@@ -309,6 +328,12 @@ public class Board {
             }
         }
     }
+
+    /**
+     * check if a robot is on a express belt and if it is. move the robot
+     *
+     * @param robot the robot that should be moved
+     */
     public void checkExpressBelts(Robot robot){
         for (int i = 0; i < 2; i++) {
             IntVector pos = robot.getPosition();
@@ -316,28 +341,28 @@ public class Board {
                 if (belt.getPosition().equals(pos)){
                     switch (belt.getDirection()){
                         case NORTH:
-                            if(robot.onBoard(pos.getX() , pos.getY()+1)) {
+                            if(onBoard(pos.getX() , pos.getY()+1)) {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
                                 robot.draw();
                             }
                             break;
                         case EAST:
-                            if(robot.onBoard(pos.getX() +1, pos.getY())) {
+                            if(onBoard(pos.getX() +1, pos.getY())) {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
                                 robot.draw();
                             }
                             break;
                         case WEST:
-                            if(robot.onBoard(pos.getX() -1, pos.getY())) {
+                            if(onBoard(pos.getX() -1, pos.getY())) {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
                                 robot.draw();
                             }
                             break;
                         case SOUTH:
-                            if(robot.onBoard(pos.getX() , pos.getY()-1)) {
+                            if(onBoard(pos.getX() , pos.getY()-1)) {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
                                 robot.draw();
@@ -351,6 +376,12 @@ public class Board {
         }
     }
 
+    /**
+     * check if there is a belt on a location
+     *
+     * @param pos - the position to check
+     * @return true if there is belt on the location
+     */
     public Boolean checkBelts(IntVector pos){
         for (Belt belt: belts) {
             if (belt.getPosition().equals(pos)){
@@ -360,6 +391,12 @@ public class Board {
         return false;
     }
 
+    /**
+     * check if there is a wall on a location
+     *
+     * @param pos - the position to check
+     * @return true if there is a wall on the location
+     */
     public Wall checkWall(IntVector pos){
 
         for (Wall wall: walls){
@@ -367,6 +404,20 @@ public class Board {
                 return wall;
         }
         return null;
+    }
+
+    /**
+     * check if the given (x,y) posision is on the board
+     *
+     * @param x - x coordinate
+     * @param y - Y coordinate
+     * @return false if outside the board
+     */
+    public boolean onBoard(int x, int y) {
+        if (x >= 0 && x < getHeight()) {
+            return y >= 0 && y < getWidth();
+        }
+        return false;
     }
 
 
