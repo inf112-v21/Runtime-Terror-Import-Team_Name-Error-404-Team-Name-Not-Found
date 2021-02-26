@@ -158,6 +158,7 @@ public class Robot {
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
                             board.checkBelts(this);
+                            board.checkExpressBelts(this);
                         }
                     }
                 }
@@ -172,6 +173,7 @@ public class Robot {
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
                             board.checkBelts(this);
+                            board.checkExpressBelts(this);
                         }
                     }
                 }
@@ -186,6 +188,7 @@ public class Robot {
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
                             board.checkBelts(this);
+                            board.checkExpressBelts(this);
                         }
                     }
                 }
@@ -200,6 +203,7 @@ public class Robot {
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
                             board.checkBelts(this);
+                            board.checkExpressBelts(this);
                         }
                     }
                 }

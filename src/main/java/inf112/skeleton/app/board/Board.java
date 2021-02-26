@@ -16,6 +16,7 @@ public class Board {
     public ArrayList<Hole> holes;
     public ArrayList<Wall> walls;
     public ArrayList<Belt> belts;
+    public ArrayList<ExpressBelt> expressBelts;
 
     public TiledMap map_TiledMap;
 
@@ -25,6 +26,7 @@ public class Board {
     private TiledMapTileLayer holes_MapLayer;
     private TiledMapTileLayer walls_MapLayer;
     private TiledMapTileLayer belts_MapLayer;
+    private TiledMapTileLayer expressBelts_MapLayer;
 
     private final int height;
     private final int width;
@@ -48,6 +50,7 @@ public class Board {
         holes_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Holes");
         walls_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Walls");
         belts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Belts");
+        expressBelts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Express_Belts");
 
 
 
@@ -55,6 +58,7 @@ public class Board {
         holes = new ArrayList<>();
         walls = new ArrayList<>();
         belts = new ArrayList<>();
+        expressBelts = new  ArrayList<>();
 
         initLists();
     }
@@ -90,6 +94,7 @@ public class Board {
         holes = new ArrayList<>();
         walls = new ArrayList<>();
         belts = new ArrayList<>();
+        expressBelts = new ArrayList<>();
 
         this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
@@ -101,6 +106,7 @@ public class Board {
         initHoles();
         initWalls();
         initBelts();
+        initExpressBelts();
     }
 
 
@@ -204,6 +210,34 @@ public class Board {
         }
     }
 
+    public void initExpressBelts() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = expressBelts_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 76:
+                        case 19:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.SOUTH)));
+                            break;
+                        case 13:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.EAST)));
+                            break;
+                        case 68:
+                        case 12:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.NORTH)));
+                            break;
+                        case 20:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.WEST)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * check if the input (x,y) position mach with the wining flag
      *
@@ -263,6 +297,39 @@ public class Board {
                         break;
                     default:
                         break;
+                }
+            }
+        }
+    }
+    public void checkExpressBelts(Robot robot){
+        for (int i = 0; i < 2; i++) {
+            IntVector pos = robot.getPosition();
+            for (ExpressBelt belt: expressBelts) {
+                if (belt.getPosition().equals(pos)){
+                    switch (belt.getDirection()){
+                        case NORTH:
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
+                            robot.draw();
+                            break;
+                        case EAST:
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX()+ 1, robot.getPosition().getY() );
+                            robot.draw();
+                            break;
+                        case WEST:
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX()- 1, robot.getPosition().getY() );
+                            robot.draw();
+                            break;
+                        case SOUTH:
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
+                            robot.draw();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
