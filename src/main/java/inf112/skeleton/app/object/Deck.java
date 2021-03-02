@@ -28,7 +28,7 @@ public class Deck {
 
     public void shuffle() {
         cards.addAll(discard);
-        discard.removeAll(discard);
+        discard.clear();
         Collections.shuffle(cards);
     }
 
