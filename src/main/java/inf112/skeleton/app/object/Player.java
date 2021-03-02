@@ -1,7 +1,7 @@
 package inf112.skeleton.app.object;
 
 /**
- * a class for the object Palyer
+ * a class for the object Player
  */
 public class Player {
     private final Robot robot;
