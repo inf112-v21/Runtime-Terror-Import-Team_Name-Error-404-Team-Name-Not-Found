@@ -58,15 +58,26 @@
 	"default": {
 		"font": "arial_black",
 		"fontColor": "black"
-	}
-}
+	},
+    "lobby": {
+        "font": "arial_black",
+        "fontColor": "red"
+    }
+
+},
 "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
 	"default": {
 		"font": "arial_black",
 		"fontColor": "blue",
 		"downFontColor": "red",
 		"overFontColor": "black"
-	}
+	},
+    "lobby": {
+      "font": "arial_black",
+      "fontColor": "red",
+      "downFontColor": "white",
+      "overFontColor": "purple"
+    }
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle": {
 	"default": {

@@ -51,7 +51,7 @@ public class TitleScreen extends ParentScreen{
         /*
          * Background
          */
-        backgroundTexture = new Texture("assets/Robot.png");
+        backgroundTexture = new Texture("assets/stars.jpg");
         backgroundSprite = new Sprite(backgroundTexture);
         spriteBatch = new SpriteBatch();
     }
@@ -86,6 +86,44 @@ public class TitleScreen extends ParentScreen{
             }
         });
         return playButton;
+    }
+
+    private TextButton makeMultiplayerButton(int center) {
+        /*
+         * Play button
+         */
+        TextButton multiplayerButton = new TextButton("Multiplayer", RoboRally.skin, "default");
+        multiplayerButton.setWidth(center);
+        multiplayerButton.setPosition(center - multiplayerButton.getWidth()/2,(center/4));
+        multiplayerButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                game.startMultiplayer();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        return multiplayerButton;
+    }
+
+    private TextButton makeJoinButton(int center){
+        TextButton joinButton = new TextButton("Join a Game", RoboRally.skin, "lobby");
+        joinButton.setWidth(center);
+        joinButton.setPosition(center - joinButton.getWidth()/2,center/4);
+        joinButton.addListener(new InputListener(){
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Yehaw mf");
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+
+        return joinButton;
     }
 
     @Override

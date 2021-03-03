@@ -12,8 +12,8 @@ public class Client {
     private final String hostname_adress;
     private final int port;
     private static Socket socket;
-    private PrintWriter sending;
-    private BufferedReader incoming;
+    private PrintWriter outPutStream;
+    private BufferedReader inputStream;
 
     public Client(String hostName, int port){
         SocketHints socketHints = new SocketHints();
@@ -29,15 +29,31 @@ public class Client {
         this.outPutStream = new PrintWriter(socket.getOutputStream(), true);
     }
 
-    private void sendReceive(String msg){
+    public String getPing(){
+        return sendReceive("Ping");
+    }
+
+    public void closeHost(){
+        sendReceive("stopHost");
+    }
+
+    public void closeConnection(){
+        sendReceive("stopClient");
+    }
+
+
+    private String sendReceive(String msg){
+        outPutStream.println(msg);
         String receive;
         try {
-            receive = incoming.readLine();
-        } catch (java.net.SocketException e) {
-            receive = "bad";
+            receive = inputStream.readLine();
         } catch (IOException e) {
-
+            receive = "bad";
         }
+        if (receive == null) {
+            receive = "null bad";
+        }
+        return receive;
     }
 
 
