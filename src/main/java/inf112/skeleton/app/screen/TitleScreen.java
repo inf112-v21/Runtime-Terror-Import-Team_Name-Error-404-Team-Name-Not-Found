@@ -33,17 +33,19 @@ public class TitleScreen extends ParentScreen{
         initBackgroundImage();
 
         int row_height = Gdx.graphics.getWidth() / 12;
-        int center = Gdx.graphics.getWidth()/2;
+        int width_center = Gdx.graphics.getWidth()/2;
 
         Label title = makeTitleLabel(row_height);
-        TextButton playButton = makePlayButton(center);
-        TextButton multiplayerButton = makeMultiplayerButton(center);
+        TextButton playButton = makePlayButton(width_center, row_height);
+        TextButton hostButton = makeHostButton(width_center, row_height);
+        TextButton joinButton = makeJoinButton(width_center, row_height);
         /*
          * Add the elements to the stage
          */
         stage.addActor(title);
         stage.addActor(playButton);
-        stage.addActor(multiplayerButton);
+        stage.addActor(hostButton);
+        stage.addActor(joinButton);
 
     }
 
@@ -51,7 +53,7 @@ public class TitleScreen extends ParentScreen{
         /*
          * Background
          */
-        backgroundTexture = new Texture("assets/stars.jpg");
+        backgroundTexture = new Texture("assets/Robot.png");
         backgroundSprite = new Sprite(backgroundTexture);
         spriteBatch = new SpriteBatch();
     }
@@ -67,14 +69,13 @@ public class TitleScreen extends ParentScreen{
         return title;
     }
 
-    private TextButton makePlayButton(int center) {
+    private TextButton makePlayButton(int center, int row_height) {
         /*
          * Play button
          */
         TextButton playButton = new TextButton("Play", RoboRally.skin, "default");
         playButton.setWidth(center);
-        playButton.setPosition(center -playButton.getWidth()/2,
-                center -playButton.getHeight()/2);
+        playButton.setPosition(center -playButton.getWidth()/2,Gdx.graphics.getHeight()- row_height *4);
         playButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -88,16 +89,17 @@ public class TitleScreen extends ParentScreen{
         return playButton;
     }
 
-    private TextButton makeMultiplayerButton(int center) {
+    private TextButton makeHostButton(int center, int row_height) {
         /*
          * Play button
          */
-        TextButton multiplayerButton = new TextButton("Multiplayer", RoboRally.skin, "default");
+        TextButton multiplayerButton = new TextButton("Host", RoboRally.skin, "default");
         multiplayerButton.setWidth(center);
-        multiplayerButton.setPosition(center - multiplayerButton.getWidth()/2,(center/4));
+        multiplayerButton.setPosition(center - multiplayerButton.getWidth()/2,Gdx.graphics.getHeight()- row_height *6);
         multiplayerButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Hosting the game...");
                 game.startMultiplayer();
             }
             @Override
@@ -108,14 +110,14 @@ public class TitleScreen extends ParentScreen{
         return multiplayerButton;
     }
 
-    private TextButton makeJoinButton(int center){
+    private TextButton makeJoinButton(int center, int row_height){
         TextButton joinButton = new TextButton("Join a Game", RoboRally.skin, "lobby");
         joinButton.setWidth(center);
-        joinButton.setPosition(center - joinButton.getWidth()/2,center/4);
+        joinButton.setPosition(center - joinButton.getWidth()/2,Gdx.graphics.getHeight()- row_height *5);
         joinButton.addListener(new InputListener(){
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Yehaw mf");
+                System.out.println("Joining the game...");
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
