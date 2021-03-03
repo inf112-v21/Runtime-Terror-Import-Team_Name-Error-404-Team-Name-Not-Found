@@ -32,6 +32,44 @@ public class Host {
     acceptNewSockets();
 
 
+    // While playeing, aka venter på folk å koble på
+        // Hvis vi får en ny tilkobling:
+            // Legge til i spiller listen vår, altså legg til socket i listen over spiller som  er koblet på
+            // Da har vi en åpen socket til andre spillere i en liste.
+            // Dette har fordi da kan serveren pushe endringer til alle spillere
+            // og spillere kan gi sine moves/trekk til serveren
+
+    // 1 server med mange koblet til
+        // Server har brettet og all spill-logikk og sender oppdateringer til alle klienter, for løkke
+        // Server har brett-klassen alstå og oppdaterer brettet og sender på en måte endringene til hver klient
+        // ^^  Det tror jeg er vanskelig
+    }
+
+
+    public void acceptNewSockets(){
+        while(playing) {
+            Socket socketConnected;
+            synchronized (serverSocket){
+                try {
+                    socketConnected = serverSocket.accept(null);
+                    System.out.print("client connected: ");
+                    System.out.println(socketConnected.getRemoteAddress());
+                } catch (com.badlogic.gdx.utils.GdxRuntimeException e) {
+                    playing = false;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 4; i++) {
+                if (connected[i].equals(" ")) {
+                    Server server = new Server(this, socketConnected, i);
+                    servers[i] = server;
+                    break;
+                } else if (i == 3) {
+                    System.out.println("lobby full");
+                }
+            }
+        }
     }
 
     public void stop() {
