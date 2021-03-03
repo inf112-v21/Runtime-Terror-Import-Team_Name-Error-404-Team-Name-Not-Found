@@ -93,7 +93,7 @@ public class TitleScreen extends ParentScreen{
         /*
          * Play button
          */
-        TextButton multiplayerButton = new TextButton("Host", RoboRally.skin, "default");
+        TextButton multiplayerButton = new TextButton("Host a game", RoboRally.skin, "default");
         multiplayerButton.setWidth(center);
         multiplayerButton.setPosition(center - multiplayerButton.getWidth()/2,Gdx.graphics.getHeight()- row_height *6);
         multiplayerButton.addListener(new InputListener(){
@@ -118,6 +118,7 @@ public class TitleScreen extends ParentScreen{
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Joining the game...");
+                game.joinGame();
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
