@@ -16,7 +16,7 @@ public class Server {
         this.socketConnected = connected;
         this.num = num;
         String clientIP = connected.getRemoteAddress();
-        host.connected.set(num, clientIP);
+        host.connected[num] = clientIP;
     }
 
     private String ping() {
@@ -24,7 +24,7 @@ public class Server {
     }
 
     public void closeConnection() {
-        host.connected.set(num, "");
+        host.connected[num] = " ";
         socketConnected.dispose();
         Thread.currentThread().interrupt();
         connected = false;
@@ -33,6 +33,15 @@ public class Server {
     private void closeHost() {
         host.stop();
         closeConnection();
+    }
+
+    private String getPlayers() {
+        StringBuilder reply = new StringBuilder();
+        for(String connection : host.connected) {
+            reply.append(connection);
+            reply.append(" -");
+        }
+        return reply.toString();
     }
 
 
@@ -55,6 +64,8 @@ public class Server {
                 case "stopHost":
                     reply = "closeing host";
                     closeHost();
+                case "getPlayers":
+                    reply = getPlayers();
                 default:
                     reply = "Error 404";
                     break;

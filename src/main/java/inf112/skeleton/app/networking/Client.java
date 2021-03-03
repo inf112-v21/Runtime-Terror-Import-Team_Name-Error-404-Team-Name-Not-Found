@@ -41,6 +41,11 @@ public class Client {
         sendReceive("stopClient");
     }
 
+    public String[] getPlayers() {
+        String reply = sendReceive("getPlayers");
+        return reply.split("-");
+    }
+
 
     private String sendReceive(String msg){
         outPutStream.println(msg);
@@ -51,7 +56,7 @@ public class Client {
             receive = "bad";
         }
         if (receive == null) {
-            receive = "null bad";
+            receive = "bad";
         }
         return receive;
     }

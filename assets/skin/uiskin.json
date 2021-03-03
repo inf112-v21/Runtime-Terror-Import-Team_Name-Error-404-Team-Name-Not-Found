@@ -54,6 +54,13 @@
 		"a": 1
 	}
 },
+"com.badlogic.gdx.scenes.scene2d.ui.List$ListStyle":{
+  "default": {
+    "font": "arial_black",
+    "fontColorSelected": "red",
+    "selection": "list-selection"
+  }
+},
 "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
 	"default": {
 		"font": "arial_black",
@@ -63,7 +70,6 @@
         "font": "arial_black",
         "fontColor": "red"
     }
-
 },
 "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
 	"default": {
