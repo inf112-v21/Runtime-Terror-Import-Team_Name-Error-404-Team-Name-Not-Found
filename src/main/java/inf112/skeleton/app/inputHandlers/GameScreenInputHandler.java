@@ -9,7 +9,7 @@ import inf112.skeleton.app.screen.GameScreen;
  * a class that handles the input form keyboard when playing, making us able to play with the arrow keys
  *
  */
-public class clasGameScreenInputHandler extends InputAdapter {
+public class GameScreenInputHandler extends InputAdapter {
     private RoboRally game;
     private GameScreen screen;
 
