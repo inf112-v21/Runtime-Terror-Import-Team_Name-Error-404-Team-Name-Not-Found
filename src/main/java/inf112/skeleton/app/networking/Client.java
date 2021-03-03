@@ -19,15 +19,14 @@ public class Client {
         SocketHints socketHints = new SocketHints();
         this.hostname_adress = hostName;
         this.port = port;
-        socket = Gdx.net.newClientSocket(Net.Protocol.TCP, hostname_adress, port, socketHints); // How to do this
-
-        BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
+        this.socket = Gdx.net.newClientSocket(Net.Protocol.TCP, hostname_adress, port, socketHints); // How to do this
+        
+        setup_sockets();
     }
 
-    private void setup_socket(){
-        BufferedReader incoming = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter sending = new PrintWriter(socket.getOutputStream(), true);
+    private void setup_sockets(){
+        this.inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        this.outPutStream = new PrintWriter(socket.getOutputStream(), true);
     }
 
     private void sendReceive(String msg){
