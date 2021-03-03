@@ -36,14 +36,15 @@ public class TitleScreen extends ParentScreen{
         int center = Gdx.graphics.getWidth()/2;
 
         Label title = makeTitleLabel(row_height);
-
         TextButton playButton = makePlayButton(center);
-
+        TextButton multiplayerButton = makeMultiplayerButton(center);
         /*
          * Add the elements to the stage
          */
         stage.addActor(title);
         stage.addActor(playButton);
+        stage.addActor(multiplayerButton);
+
     }
 
     private void initBackgroundImage() {
