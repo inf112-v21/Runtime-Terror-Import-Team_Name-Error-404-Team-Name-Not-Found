@@ -8,7 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
@@ -22,9 +25,12 @@ import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
  */
 public class TitleScreen extends ParentScreen{
 
+    private TextField ip;
     Texture backgroundTexture;
     Sprite backgroundSprite;
     SpriteBatch spriteBatch;
+
+    Label label;
 
     public TitleScreen(RoboRally aGame) {
         super(aGame);
@@ -32,20 +38,33 @@ public class TitleScreen extends ParentScreen{
 
         initBackgroundImage();
 
+        Table table = new Table();
+        table.setFillParent(true);
+
         int row_height = Gdx.graphics.getWidth() / 12;
         int width_center = Gdx.graphics.getWidth()/2;
 
+        label = new Label("", RoboRally.skin);
         Label title = makeTitleLabel(row_height);
         TextButton playButton = makePlayButton(width_center, row_height);
         TextButton hostButton = makeHostButton(width_center, row_height);
         TextButton joinButton = makeJoinButton(width_center, row_height);
+
+        checkIP();
         /*
          * Add the elements to the stage
          */
-        stage.addActor(title);
-        stage.addActor(playButton);
-        stage.addActor(hostButton);
-        stage.addActor(joinButton);
+
+        table.add(title);
+        table.row();
+        table.add(playButton);
+        table.row();
+        table.add(hostButton);
+        table.row();
+        table.add(joinButton);
+        table.row();
+        table.add(label).colspan(2);
+        stage.addActor(table);
 
     }
 
@@ -89,6 +108,17 @@ public class TitleScreen extends ParentScreen{
         return playButton;
     }
 
+    private void checkIP(){
+        this.ip = new TextField("127.0.0.1", RoboRally.skin);
+        ip.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                label.setText("");
+            }
+        });
+    }
+
     private TextButton makeHostButton(int center, int row_height) {
         /*
          * Play button
@@ -100,7 +130,8 @@ public class TitleScreen extends ParentScreen{
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Hosting the game...");
-                game.startMultiplayer();
+                game.getScreen().dispose();
+                game.setScreen(new LobbyScreen(game, ip.getText(), true));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -118,7 +149,9 @@ public class TitleScreen extends ParentScreen{
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("Joining the game...");
-                game.joinGame();
+                System.out.println("Trying to join..." + ip.getText());
+                game.getScreen().dispose();
+                game.setScreen(new LobbyScreen(game, ip.getText(), false));
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -154,4 +187,9 @@ public class TitleScreen extends ParentScreen{
     public void dispose() {
         super.dispose();
     }
+
+    public TextField getIP(){
+        return this.ip;
+    }
 }
+

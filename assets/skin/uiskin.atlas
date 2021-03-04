@@ -11,7 +11,7 @@ arial_black
   orig: 512, 512
   offset: 0, 0
   index: -1
-list-selection
+selection
   rotate: false
   xy: 630, 159
   size: 18, 17

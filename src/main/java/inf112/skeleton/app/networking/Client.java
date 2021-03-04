@@ -9,25 +9,21 @@ import java.io.*;
 
 public class Client {
 
-    private final String hostname_adress;
+    private final String hostIP;
     private final int port;
-    private static Socket socket;
     private PrintWriter outPutStream;
     private BufferedReader inputStream;
 
-    public Client(String hostName, int port){
+    public Client(String hostIP, int port){
         SocketHints socketHints = new SocketHints();
-        this.hostname_adress = hostName;
+        this.hostIP = hostIP;
         this.port = port;
-        this.socket = Gdx.net.newClientSocket(Net.Protocol.TCP, hostname_adress, port, socketHints); // How to do this
-        
-        setup_sockets();
+        Socket client = Gdx.net.newClientSocket(Net.Protocol.TCP, hostIP, port, socketHints); // How to do this
+
+        this.inputStream = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        this.outPutStream = new PrintWriter(client.getOutputStream(), true);
     }
 
-    private void setup_sockets(){
-        this.inputStream = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        this.outPutStream = new PrintWriter(socket.getOutputStream(), true);
-    }
 
     public String getPing(){
         return sendReceive("Ping");
@@ -43,22 +39,30 @@ public class Client {
 
     public String[] getPlayers() {
         String reply = sendReceive("getPlayers");
-        return reply.split("-");
+        return reply.split(",");
+    }
+
+    public String getGameState() {
+        return sendReceive("getGameState");
+    }
+
+    public void setGameState(String state){
+        sendReceive(state);
     }
 
 
     private String sendReceive(String msg){
         outPutStream.println(msg);
-        String receive;
+        String reply;
         try {
-            receive = inputStream.readLine();
+            reply = inputStream.readLine();
         } catch (IOException e) {
-            receive = "bad";
+            reply = "bad";
         }
-        if (receive == null) {
-            receive = "bad";
+        if (reply == null) {
+            reply = "bad";
         }
-        return receive;
+        return reply;
     }
 
 
