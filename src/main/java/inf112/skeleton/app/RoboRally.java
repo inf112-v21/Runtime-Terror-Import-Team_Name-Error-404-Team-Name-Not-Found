@@ -39,11 +39,6 @@ public class RoboRally extends Game {
         this.setScreen(new GameScreen(this));
     }
 
-    public void startMultiplayer(){
-        this.getScreen().dispose();
-        this.setScreen(new LobbyScreen(this));
-    }
-
     public void pauseGame(){
         this.getScreen().dispose();
         this.setScreen(new TitleScreen(this));
