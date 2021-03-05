@@ -4,18 +4,19 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import inf112.skeleton.app.object.Flag;
+import inf112.skeleton.app.object.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import inf112.skeleton.app.object.Hole;
-import inf112.skeleton.app.object.Robot;
 
 import java.util.ArrayList;
 
 public class Board {
     public ArrayList<Flag> flags;
     public ArrayList<Hole> holes;
+    public ArrayList<Wall> walls;
+    public ArrayList<Belt> belts;
+    public ArrayList<ExpressBelt> expressBelts;
 
     public TiledMap map_TiledMap;
 
@@ -23,9 +24,12 @@ public class Board {
     public TiledMapTileLayer players_MapLayer;
     private TiledMapTileLayer flags_MapLayer;
     private TiledMapTileLayer holes_MapLayer;
+    private TiledMapTileLayer walls_MapLayer;
+    private TiledMapTileLayer belts_MapLayer;
+    private TiledMapTileLayer expressBelts_MapLayer;
 
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
     private int tileHeight;
 
     /*
@@ -44,16 +48,20 @@ public class Board {
         players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
         flags_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Flags");
         holes_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Holes");
+        walls_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Walls");
+        belts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Belts");
+        expressBelts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Express_Belts");
 
 
 
         flags = new ArrayList<>();
         holes = new ArrayList<>();
+        walls = new ArrayList<>();
+        belts = new ArrayList<>();
+        expressBelts = new  ArrayList<>();
 
-        initFlags();
-        initHoles();
+        initLists();
     }
-
 
     /*
      * construct a game board with a empty map
@@ -84,10 +92,26 @@ public class Board {
 
         flags = new ArrayList<>();
         holes = new ArrayList<>();
+        walls = new ArrayList<>();
+        belts = new ArrayList<>();
+        expressBelts = new ArrayList<>();
 
         this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
     }
+
+
+    /**
+     * runs true all the init modules
+     */
+    public void initLists(){
+        initFlags();
+        initHoles();
+        initWalls();
+        initBelts();
+        initExpressBelts();
+    }
+
 
     /**
      * check the entire map for all the flags and adds them to a list of flags
@@ -136,6 +160,99 @@ public class Board {
     }
 
     /**
+     * check all the walls on the hole layer and adds them to the walls list.
+     */
+    private void initWalls() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = walls_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 28:
+                            walls.add(new Wall(new Location(x, y, Direction.NORTH)));
+                            break;
+                        case 27:
+                            walls.add(new Wall(new Location(x, y, Direction.WEST)));
+                            break;
+                        case 26:
+                            walls.add(new Wall(new Location(x, y, Direction.SOUTH)));
+                            break;
+                        case 21:
+                            walls.add(new Wall(new Location(x, y, Direction.EAST)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * check all the belts on the hole layer and adds them to the belts list.
+     *
+     */
+    private void initBelts() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = belts_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 44:
+                            belts.add(new Belt(new Location(x, y, Direction.SOUTH)));
+                            break;
+                        case 36:
+                        case 46:
+                            belts.add(new Belt(new Location(x, y, Direction.EAST)));
+                            break;
+                        case 43:
+                            belts.add(new Belt(new Location(x, y, Direction.NORTH)));
+                            break;
+                        case 45:
+                        case 30:
+                            belts.add(new Belt(new Location(x, y, Direction.WEST)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * check all the express belts on the hole layer and adds them to the express belts list.
+     *
+     */
+    public void initExpressBelts() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = expressBelts_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 76:
+                        case 19:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.SOUTH)));
+                            break;
+                        case 13:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.EAST)));
+                            break;
+                        case 68:
+                        case 12:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.NORTH)));
+                            break;
+                        case 20:
+                            expressBelts.add(new ExpressBelt(new Location(x, y, Direction.WEST)));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * check if the input (x,y) position mach with the wining flag
      *
      * @param robot the players robot
@@ -144,7 +261,7 @@ public class Board {
     public boolean checkWin(Robot robot){
         IntVector pos = robot.getPosition();
         for (Flag flag : flags) {
-            if (flag.getPosition().getX() == pos.getX() && flag.getPosition().getY() == pos.getY()) {
+            if (flag.getPosition().equals(pos)) {
                 return true;
             }
         }
@@ -159,11 +276,146 @@ public class Board {
      */
     public boolean checkHole(Robot robot) {
         IntVector pos = robot.getPosition();
-
         for (Hole hole : holes) {
-            if (hole.getPosition().getX() == pos.getX() && hole.getPosition().getY() == pos.getY()) {
+            if (hole.getPosition().equals(pos)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    /**
+     * check if a robot is on a express belt and if it is. move the robot
+     *
+     * @param robot the robot that should be moved
+     */
+    public void checkBelts(Robot robot){
+        IntVector pos = robot.getPosition();
+        for (Belt belt: belts) {
+            if (belt.getPosition().equals(pos)){
+                switch (belt.getDirection()){
+                    case NORTH:
+                        if(onBoard(pos.getX(), pos.getY() - 1)) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
+                            robot.draw();
+                        }
+                        break;
+                    case EAST:
+                        if(onBoard(pos.getX() +1, pos.getY())) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
+                            robot.draw();
+                        }
+                        break;
+                    case WEST:
+                        if(onBoard(pos.getX() -1, pos.getY())) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
+                            robot.draw();
+                        }
+                        break;
+                    case SOUTH:
+                        if(onBoard(pos.getX(), pos.getY() -1)) {
+                            robot.erase();
+                            robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
+                            robot.draw();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    /**
+     * check if a robot is on a express belt and if it is. move the robot
+     *
+     * @param robot the robot that should be moved
+     */
+    public void checkExpressBelts(Robot robot){
+        for (int i = 0; i < 2; i++) {
+            IntVector pos = robot.getPosition();
+            for (ExpressBelt belt: expressBelts) {
+                if (belt.getPosition().equals(pos)){
+                    switch (belt.getDirection()){
+                        case NORTH:
+                            if(onBoard(pos.getX() , pos.getY()+1)) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
+                                robot.draw();
+                            }
+                            break;
+                        case EAST:
+                            if(onBoard(pos.getX() +1, pos.getY())) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
+                                robot.draw();
+                            }
+                            break;
+                        case WEST:
+                            if(onBoard(pos.getX() -1, pos.getY())) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
+                                robot.draw();
+                            }
+                            break;
+                        case SOUTH:
+                            if(onBoard(pos.getX() , pos.getY()-1)) {
+                                robot.erase();
+                                robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
+                                robot.draw();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * check if there is a belt on a location
+     *
+     * @param pos - the position to check
+     * @return true if there is belt on the location
+     */
+    public Boolean checkBelts(IntVector pos){
+        for (Belt belt: belts) {
+            if (belt.getPosition().equals(pos)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * check if there is a wall on a location
+     *
+     * @param pos - the position to check
+     * @return true if there is a wall on the location
+     */
+    public Wall checkWall(IntVector pos){
+
+        for (Wall wall: walls){
+            if (wall.getPosition().equals(pos))
+                return wall;
+        }
+        return null;
+    }
+
+    /**
+     * check if the given (x,y) posision is on the board
+     *
+     * @param x - x coordinate
+     * @param y - Y coordinate
+     * @return false if outside the board
+     */
+    public boolean onBoard(int x, int y) {
+        if (x >= 0 && x < getHeight()) {
+            return y >= 0 && y < getWidth();
         }
         return false;
     }

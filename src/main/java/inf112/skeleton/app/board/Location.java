@@ -1,9 +1,25 @@
 package inf112.skeleton.app.board;
 
+import java.util.Objects;
+
 /**
  * location of a object that shows what way its facing and where it is
  */
 public class Location {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Location location = (Location) o;
+        return position.equals(location.position) && direction == location.direction;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, direction);
+    }
+
     private IntVector position;
     private Direction direction;
 
