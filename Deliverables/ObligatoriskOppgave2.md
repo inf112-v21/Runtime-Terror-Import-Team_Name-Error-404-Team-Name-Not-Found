@@ -61,32 +61,17 @@ Møtene fra og med møte [nr. 6](https://github.com/inf112-v21/Runtime-Terror-Im
 
 #Oppgave 2)
 
-**Dersom dere har oppgaver som dere skal til å starte med, hvor dere har oversikt over både brukerhistorie, akseptansekriterier og arbeidsoppgaver, kan dere ta med disse i innleveringen også.**
-
-[En issue som er eksempel som er ferdig](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/issues/18), hvordan en brukerhistorie med akseptansekriterier og arbeidsoppgaver ser ut.
-
-**Forklar kort hvordan dere har prioritert oppgavene fremover
-Har dere gjort justeringer på kravene som er med i MVP? Forklar i så fall hvorfor. Hvis det er gjort endringer i rekkefølge utfra hva som er gitt fra kunde, hvorfor er dette gjort?
-Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.
-Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).**
-
-
-
-
-
-
-
-
 Vi valgte å prioritere å bli ferdig med mvp oppgavene mest mulig til spillet. Vi delte oss opp i to par og fordelte arbeidet i parprogrammering.
 
-Prioriteringen for mvp oppgavene gikk til å få til online mekanikken og få til kort mekanikken i teorien.
+Prioriteringen for mvp oppgavene gikk til å få til online mekanikken og få til kort mekanikken i teorien. Vi justerte på å prioritere Bevege robot ut fra valgte kort etter vi var ferdig med de tre første kravene. Vi endte med å maksimere kvaliteten mest mulig på kravene vi hadde startet på så vi fikk ikke tid nok til å prioritere siste kravet.
 
 Vi jobbet mye med feature (multiplayer) som ligger i en utviklingsbranch som ikke blir med i produktleveransen/obligen.
 
-Flere maskiner - Kan hoste og joine game mellom to maskiner, da vi har fått en TCP/IP  
-Dele ut kort - I teorien er koden ferdig  
-Velge 5 kort - I teorien er koden ferdig  
-Bevege robot ut fra valgte kort - Ikke gjort
+Flere maskiner - Kan hoste og joine game mellom to maskiner, da vi har fått en TCP/IP kobling mellom en host og en spiller. Men kan ikke spilles enda.  
+Dele ut kort - I teorien er koden ferdig. Logikken er der, mangler det visuelle.  
+Velge 5 kort - I teorien er koden ferdig.Logikken er der, mangler det visuelle.  
+Bevege robot ut fra valgte kort - Ikke prioritert  
+
 
 
 
