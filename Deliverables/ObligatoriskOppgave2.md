@@ -59,7 +59,7 @@ Møtene fra og med møte [nr. 6](https://github.com/inf112-v21/Runtime-Terror-Im
 
 
 
-#Oppgave 2)
+## Oppgave 2
 
 Vi valgte å prioritere å bli ferdig med mvp oppgavene mest mulig til spillet. Vi delte oss opp i to par og fordelte arbeidet i parprogrammering.
 
@@ -93,7 +93,7 @@ BUGS:
     - Timer funker ikke helt som den skal slik at “gameState” ikke blir oppdatert fordi ikke ferdig implementert enda
     
 
-#Oppgave 3
+## Oppgave 3
 
 ![Class Diagram](Diagram/classdiagram.png?raw=true "Class Diagram")
 
