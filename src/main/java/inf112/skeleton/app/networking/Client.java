@@ -20,8 +20,8 @@ public class Client {
         this.port = port;
         Socket client = Gdx.net.newClientSocket(Net.Protocol.TCP, hostIP, port, socketHints); // How to do this
 
-        this.inputStream = new BufferedReader(new InputStreamReader(client.getInputStream()));
-        this.outPutStream = new PrintWriter(client.getOutputStream(), true);
+        inputStream = new BufferedReader(new InputStreamReader(client.getInputStream()));
+        outPutStream = new PrintWriter(client.getOutputStream(), true);
     }
 
 
@@ -62,6 +62,7 @@ public class Client {
         if (reply == null) {
             reply = "bad";
         }
+        System.out.println(reply);
         return reply;
     }
 
