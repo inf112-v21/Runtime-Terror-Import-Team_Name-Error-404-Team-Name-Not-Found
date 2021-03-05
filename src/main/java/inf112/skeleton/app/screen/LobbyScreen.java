@@ -35,7 +35,7 @@ public class LobbyScreen extends ParentScreen {
     private String hostIP;
     private Boolean isHost;
     private Client client;
-    private final Timer timer = new Timer();
+    private final Timer timer = new Timer(true);
     private RoboRally game;
 
 
@@ -109,7 +109,7 @@ public class LobbyScreen extends ParentScreen {
         /*
          * waiting label
          */
-        Label title = new Label("Waiting for host to start...", RoboRally.skin, "lobby");
+        Label title = new Label("Waiting for host to start", RoboRally.skin, "lobby");
         title.setAlignment(Align.center);
         return title;
     }
@@ -145,7 +145,7 @@ public class LobbyScreen extends ParentScreen {
         startButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                setGameStart();
+                game.startGame();
             }
 
             @Override
@@ -215,7 +215,6 @@ public class LobbyScreen extends ParentScreen {
                 break;
             default:
         }
-
     }
 
     @Override

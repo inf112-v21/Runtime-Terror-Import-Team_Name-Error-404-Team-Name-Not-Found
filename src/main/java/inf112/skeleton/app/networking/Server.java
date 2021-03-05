@@ -57,7 +57,7 @@ public class Server implements Runnable{
         return host.getGameState();
     }
 
-    private void setGameStatus(String gameState) {
+    private void setGameState(String gameState) {
         host.setGameState(gameState);
     }
 
@@ -87,7 +87,7 @@ public class Server implements Runnable{
                     case "getGameState":
                         reply = getGameState();
                     case "setStart":
-                        setGameStatus("start");
+                        setGameState("start");
                         reply = "Starting";
                     default:
                         reply = "Error 404";

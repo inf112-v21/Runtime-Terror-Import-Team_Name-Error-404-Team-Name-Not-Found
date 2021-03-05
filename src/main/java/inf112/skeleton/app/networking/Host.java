@@ -42,34 +42,21 @@ public class Host {
                 }
             }
 
-            for (int i = 0; i < 8; i++) {
+            for (int i = 0; i < 4; i++) {
                 if (playersConnected[i].equals(" ")) {
                     Server server = new Server(this, socketConnected, i);
-                    Thread thread = new Thread((Runnable) server);
+                    Thread thread = new Thread(server);
                     servers[i] = server;
                     thread.setName(String.format("Player %d", i));
                     thread.start();
                     break;
-                } else if (i == 7) {
+                } else if (i == 3) {
                     System.out.println("Lobby is full");
                 }
             }
         }
         System.out.println("closeing");
     }
-
-
-    // While playeing, aka venter på folk å koble på
-        // Hvis vi får en ny tilkobling:
-            // Legge til i spiller listen vår, altså legg til socket i listen over spiller som  er koblet på
-            // Da har vi en åpen socket til andre spillere i en liste.
-            // Dette har fordi da kan serveren pushe endringer til alle spillere
-            // og spillere kan gi sine moves/trekk til serveren
-
-    // 1 server med mange koblet til
-        // Server har brettet og all spill-logikk og sender oppdateringer til alle klienter, for løkke
-        // Server har brett-klassen alstå og oppdaterer brettet og sender på en måte endringene til hver klient
-        // ^^  Det tror jeg er vanskelig
 
     public void stop() {
         for(Server player: servers){
