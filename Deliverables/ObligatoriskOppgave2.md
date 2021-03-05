@@ -110,5 +110,5 @@ BUGS:
 
 #Oppgave 3
 
-![Class Diagram](Diagram/classdiagram2.png?raw=true "Class Diagram")
+![Class Diagram](Diagram/classdiagram.png?raw=true "Class Diagram")
 
