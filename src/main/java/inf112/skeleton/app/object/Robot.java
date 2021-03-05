@@ -24,6 +24,7 @@ public class Robot {
     public TiledMapTileLayer.Cell playerCell_win;
 
     private Board board;
+  
     /**
      * a constructor for the robot object
      *
@@ -187,6 +188,7 @@ public class Robot {
                             }
                         }
                     }
+
                 }
 
                 break;
@@ -205,6 +207,7 @@ public class Robot {
                             }
                         }
                     }
+
                 }
                 break;
             default:
