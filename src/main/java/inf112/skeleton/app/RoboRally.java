@@ -4,8 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import inf112.skeleton.app.screen.GameScreen;
-import inf112.skeleton.app.screen.JoinScreen;
-import inf112.skeleton.app.screen.LobbyScreen;
 import inf112.skeleton.app.screen.TitleScreen;
 
 public class RoboRally extends Game {
@@ -55,6 +53,5 @@ public class RoboRally extends Game {
 
     public void joinGame() {
         this.getScreen().dispose();
-        this.setScreen(new JoinScreen(this));
     }
 }

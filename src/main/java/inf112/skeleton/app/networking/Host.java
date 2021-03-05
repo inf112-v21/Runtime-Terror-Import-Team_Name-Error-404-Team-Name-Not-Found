@@ -45,7 +45,7 @@ public class Host {
             for (int i = 0; i < 8; i++) {
                 if (playersConnected[i].equals(" ")) {
                     Server server = new Server(this, socketConnected, i);
-                    Thread thread = new Thread(String.valueOf(server));
+                    Thread thread = new Thread((Runnable) server);
                     servers[i] = server;
                     thread.setName(String.format("Player %d", i));
                     thread.start();

@@ -1,6 +1,5 @@
 package inf112.skeleton.app.inputHandlers;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import inf112.skeleton.app.RoboRally;

@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.inputHandlers.MultiplayerScreenInputHandler;
+import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
 import inf112.skeleton.app.networking.Client;
 import inf112.skeleton.app.networking.Host;
 import org.lwjgl.system.CallbackI;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class LobbyScreen extends ScreenAdapter {
+public class LobbyScreen extends ParentScreen {
 
     Texture backgroundTexture;
     Sprite backgroundSprite;
@@ -34,23 +35,19 @@ public class LobbyScreen extends ScreenAdapter {
     private String hostIP;
     private Boolean isHost;
     private Client client;
-    private final Timer timer = new Timer(true);
+    private final Timer timer = new Timer();
     private RoboRally game;
-    private Stage stage;
 
 
     public LobbyScreen(RoboRally aGame, String hostIP, Boolean isHost) {
-        this.game = game;
+        super(aGame);
         this.hostIP = hostIP;
         this.isHost = isHost;
-        stage = new Stage();
+        this.game = aGame;
 
-        Skin skin = new Skin(Gdx.files.internal("assets/skin/uiskin.json"));
+        inputMultiplexer.addProcessor(new MultiplayerScreenInputHandler(game, this));
 
         initBackgroundImage();
-
-        stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
 
 
         int row_height = Gdx.graphics.getWidth() / 12;

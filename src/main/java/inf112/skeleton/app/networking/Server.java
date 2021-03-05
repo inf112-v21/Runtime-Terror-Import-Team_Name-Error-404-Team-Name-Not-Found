@@ -5,7 +5,7 @@ import com.badlogic.gdx.net.Socket;
 import java.io.*;
 import java.net.SocketException;
 
-public class Server {
+public class Server implements Runnable{
 
     private final Host host;
     private final Socket socketConnected;
@@ -62,12 +62,10 @@ public class Server {
     }
 
 
-    public void play() throws IOException {
+    public void run(){
         InputStream input = socketConnected.getInputStream();
         DataOutputStream output = new DataOutputStream(socketConnected.getOutputStream());
         BufferedReader bufferedinput = new BufferedReader(new InputStreamReader(input));
-
-
         while (connected) {
             try {
                 String commands = bufferedinput.readLine();
