@@ -27,12 +27,12 @@ public class GameScreen extends ParentScreen {
         /*
          * Adds det inputhandler for the game inputs to te multiplexer
          */
-        inputMultiplexer.addProcessor(new GameScreenInputHandler(game,this));
+        inputMultiplexer.addProcessor(new GameScreenInputHandler(game, this));
 
         /*
          * Create the board, this class also renders the map
          */
-        board = new Board("./assets/testMap.tmx");
+        board = new Board("./assets/map_001.tmx");
 
         /*
          * set up the camera
@@ -43,10 +43,13 @@ public class GameScreen extends ParentScreen {
         /*
          * Render the tiles on to the camera
          */
-        renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1/(float) board.getTileHeight());
+        renderer = new OrthogonalTiledMapRenderer(board.getMap(), 1 / (float) board.getTileHeight());
         renderer.setView(camera);
-
-        robot = new Robot(new Location(new IntVector(1,1),Direction.NORTH), "assets/player.png", board);
+        /*
+         * Initlize the player robot(s)
+         */
+        robot = new Robot(new Location(new IntVector(1, 1), Direction.NORTH), board);
+        robot.setRobotTexture("assets/player.png");
     }
 
     @Override
@@ -74,10 +77,10 @@ public class GameScreen extends ParentScreen {
         /*
          * Here we check the win and death condition.
          */
-        if (board.checkWin(robot)){
+        if (board.checkWin(robot)) {
             robot.onWin();
         }
-        if (board.checkHole(robot)){
+        if (board.checkHole(robot)) {
             robot.onDeath();
         }
     }

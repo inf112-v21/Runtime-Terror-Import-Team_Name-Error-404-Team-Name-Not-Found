@@ -9,6 +9,9 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /*
  * a class for the object Robot
  */
@@ -21,22 +24,27 @@ public class Robot {
     public TiledMapTileLayer.Cell playerCell_win;
 
     private Board board;
-
-    /*
+  
+    /**
      * a constructor for the robot object
      *
      * @param location the location of a robot
-     * @param fileName image of the robot
-     * @param aBoard  the board
+     * @param aBoard   the board
      */
-    public Robot(Location location, String fileName, Board aBoard){
+    public Robot(Location location, Board aBoard) {
         this.location = location;
         this.board = aBoard;
+    }
 
+    /**
+     * Loads the Robot texture and return a textured region of the loaded texture
+     *
+     * @param fileName filepath of the texture to be loaded
+     */
+    public void setRobotTexture(String fileName) {
         Texture texture = new Texture(fileName);
         TextureRegion textureRegion = new TextureRegion();
-        TextureRegion[][] textureRegions = textureRegion.split(texture,300, 300);
-
+        TextureRegion[][] textureRegions = textureRegion.split(texture, 300, 300);
         playerCell_alive = new TiledMapTileLayer.Cell();
         playerCell_dead = new TiledMapTileLayer.Cell();
         playerCell_win = new TiledMapTileLayer.Cell();
@@ -44,24 +52,6 @@ public class Robot {
         playerCell_alive.setTile(new StaticTiledMapTile(textureRegions[0][0]));
         playerCell_dead.setTile(new StaticTiledMapTile(textureRegions[0][1]));
         playerCell_win.setTile(new StaticTiledMapTile(textureRegions[0][2]));
-
-        cellState = playerCell_alive;
-    }
-
-    /**
-     * construct a robot with a empty map
-     * used for tests and development
-     *
-     * @param location - an location
-     * @param aBoard - a board
-     */
-    public Robot(Location location, Board aBoard) {
-        this.location = location;
-        this.board = aBoard;
-
-        playerCell_alive = new TiledMapTileLayer.Cell();
-        playerCell_dead = new TiledMapTileLayer.Cell();
-        playerCell_win = new TiledMapTileLayer.Cell();
 
         cellState = playerCell_alive;
     }
@@ -83,21 +73,21 @@ public class Robot {
     /*
      * removes the robot form the game board
      */
-    public void erase(){
+    public void erase() {
         board.players_MapLayer.setCell(location.getPosition().getX(), location.getPosition().getY(), new TiledMapTileLayer.Cell());
     }
 
     /*
      * draws the robot on the game board
      */
-    public void draw(){
+    public void draw() {
         board.players_MapLayer.setCell(location.getPosition().getX(), location.getPosition().getY(), cellState);
     }
 
     /**
      * @return the max lives a robot can have
      */
-    public static int getMaxLives(){
+    public static int getMaxLives() {
         return 3;
     }
 
@@ -114,29 +104,16 @@ public class Robot {
      * @param x x - coordinate
      * @param y y - coordinate
      */
-    public void setLocation(int x, int y){
-        this.location = new Location(x,y,location.getDirection());
+    public void setLocation(int x, int y) {
+        this.location = new Location(x, y, location.getDirection());
     }
 
-    /**
-     * check if the given (x,y) posision is on the board
-     *
-     * @param x - x coordinate
-     * @param y - Y coordinate
-     * @return false if outside the board
-     */
-    public boolean onBoard(int x, int y) {
-        if (x >= 0 && x < board.getHeight()) {
-            return y >= 0 && y < board.getWidth();
-        }
-        return false;
-    }
 
     /*
      * change the texture of the robot when it has won the game
      *
      */
-    public void onWin(){
+    public void onWin() {
         cellState = playerCell_win;
         erase();
         draw();
@@ -146,55 +123,97 @@ public class Robot {
      * change the texture of the robot when the robot has died
      *
      */
-    public void onDeath(){
+    public void onDeath() {
         cellState = playerCell_dead;
         erase();
         draw();
     }
 
     /**
-     * moves the robot to 1 tile in 4 directions up, down, left and right
+     * moves the robot to 1 tile in 4 directions up, down, left and right and check for belts
      *
      * @param way they way you want it to move
      */
-    public void walk(String way){
-        switch (way){
+    public void walk(String way) {
+        Wall wall = board.checkWall(this.getPosition());
+        switch (way) {
             case "north":
-                if(onBoard(getPosition().getX(), getPosition().getY()+1)) {
-                    erase();
-                    setLocation(getPosition().getX(), getPosition().getY() + 1);
-                    draw();
+                Wall nextNorth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() +1));
+                if (wall == null || wall.getDirection() != Direction.NORTH) {
+                    if(nextNorth == null || nextNorth.getDirection() != Direction.SOUTH) {
+                        if (board.onBoard(getPosition().getX(), getPosition().getY() + 1)) {
+                            erase();
+                            setLocation(getPosition().getX(), getPosition().getY() + 1);
+                            draw();
+                            IntVector pos = this.getPosition();
+                            board.checkBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
+                        }
+                    }
                 }
+
                 break;
             case "east":
-                if(onBoard(getPosition().getX()+1, getPosition().getY())) {
-                    erase();
-                    setLocation(getPosition().getX() + 1, getPosition().getY());
-                    draw();
+                Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
+                if (wall == null || wall.getDirection() != Direction.EAST) {
+                    if(nextEast == null || nextEast.getDirection() != Direction.WEST) {
+                        if (board.onBoard(getPosition().getX() + 1, getPosition().getY())) {
+                            erase();
+                            setLocation(getPosition().getX() + 1, getPosition().getY());
+                            draw();
+                            IntVector pos = this.getPosition();
+                            board.checkBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
+                        }
+                    }
                 }
+
                 break;
             case "west":
-                if(onBoard(getPosition().getX()-1, getPosition().getY())) {
-                    erase();
-                    setLocation(getPosition().getX() - 1, getPosition().getY());
-                    draw();
+                Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
+                if (wall == null || wall.getDirection() != Direction.WEST){
+                    if (nextWest == null || nextWest.getDirection() != Direction.EAST) {
+                        if (board.onBoard(getPosition().getX() - 1, getPosition().getY())) {
+                            erase();
+                            setLocation(getPosition().getX() - 1, getPosition().getY());
+                            draw();
+                            IntVector pos = this.getPosition();
+                            board.checkBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
+                        }
+                    }
+
                 }
+
                 break;
             case "south":
-                if(onBoard(getPosition().getX(), getPosition().getY()-1)) {
-                    erase();
-                    setLocation(getPosition().getX(), getPosition().getY() - 1);
-                    draw();
+                Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
+                if (wall == null || wall.getDirection() != Direction.SOUTH) {
+                    if (nextSouth== null || nextSouth.getDirection() != Direction.NORTH) {
+                        if (board.onBoard(getPosition().getX(), getPosition().getY() - 1)) {
+                            erase();
+                            setLocation(getPosition().getX(), getPosition().getY() - 1);
+                            draw();
+                            IntVector pos = this.getPosition();
+                            board.checkBelts(this);
+                            if (pos == getPosition()) {
+                                board.checkExpressBelts(this);
+                            }
+                        }
+                    }
+
                 }
                 break;
             default:
                 break;
         }
     }
-
-
-
-
 
 
 }
