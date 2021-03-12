@@ -1,6 +1,7 @@
-# RoboRally by team R.T.I.T.N.E.404.T.N.N.F
+# RoboRally by team R.T.I.T.N.E.404.T.N.N.F [![CI](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/actions/workflows/maven.yml/badge.svg)](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/actions/workflows/maven.yml)
 This is a student project in the class INF 112 where we are set to make a digital version of the board-game RoboRally.
 To do this we are using libgdx and Tilded.
+
 
 ## Build and run
 
