@@ -7,25 +7,20 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
 
-/*
- * This is a child of the parent screen class.
- *
- * Is displays the Title screen, all it does is to draw the label and button,
- * and give the button an action when it is pressed.
- *
- */
-public class TitleScreen extends ParentScreen{
-
+public class OptionsScreen extends ParentScreen{
     Texture backgroundTexture;
     Sprite backgroundSprite;
     SpriteBatch spriteBatch;
 
-    public TitleScreen(RoboRally aGame) {
+    public OptionsScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
 
@@ -34,13 +29,10 @@ public class TitleScreen extends ParentScreen{
         Table table = new Table();
         table.setFillParent(true);
 
-        Stack stack = new Stack();
+        table.add(makeTitle());
+        table.row();
 
-        stack.addActor(createMainMenu());
-        stack.addActor(createMultiplayerMenu());
-        stack.addActor(createOptionsMenu());
-
-        table.add(stack);
+        table.add(makeButtons());
 
         stage.addActor(table);
     }
@@ -54,18 +46,15 @@ public class TitleScreen extends ParentScreen{
         spriteBatch = new SpriteBatch();
     }
 
-    private HorizontalGroup createMainMenu() {
+    private Label makeTitle() {
+        Label label = new Label("RoboRally", RoboRally.skin, "title");
+        return label;
+    }
+
+    private HorizontalGroup makeButtons() {
         HorizontalGroup horizontalGroup = new HorizontalGroup();
         horizontalGroup.align(Align.center);
         horizontalGroup.wrap();
-        horizontalGroup.wrapSpace(5.0f);
-
-        // TITLE
-
-        Label label = new Label("RoboRally", RoboRally.skin, "title");
-        horizontalGroup.addActor(label);
-
-        // BUTTONS
 
         TextButton textButton = new TextButton("Play", RoboRally.skin);
         textButton.addListener(new InputListener(){
@@ -118,28 +107,9 @@ public class TitleScreen extends ParentScreen{
             }
         });
         horizontalGroup.addActor(textButton);
-        return horizontalGroup;
-    }
-
-    private HorizontalGroup createMultiplayerMenu() {
-        HorizontalGroup horizontalGroup = new HorizontalGroup();
-        horizontalGroup.align(Align.center);
-        horizontalGroup.wrap();
-        horizontalGroup.wrapSpace(5.0f);
 
         return horizontalGroup;
     }
-
-    private HorizontalGroup createOptionsMenu() {
-        HorizontalGroup horizontalGroup = new HorizontalGroup();
-        horizontalGroup.align(Align.center);
-        horizontalGroup.wrap();
-        horizontalGroup.wrapSpace(5.0f);
-
-
-        return horizontalGroup;
-    }
-
 
     @Override
     public void show() {
@@ -155,7 +125,7 @@ public class TitleScreen extends ParentScreen{
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         spriteBatch.begin();
-            backgroundSprite.draw(spriteBatch);
+        backgroundSprite.draw(spriteBatch);
         spriteBatch.end();
 
         stage.act();

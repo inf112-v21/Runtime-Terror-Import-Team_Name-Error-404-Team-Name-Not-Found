@@ -3,7 +3,9 @@ package inf112.skeleton.app.inputHandlers;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.Screen;
 import inf112.skeleton.app.RoboRally;
+import inf112.skeleton.app.screen.MultiplayerScreen;
 import inf112.skeleton.app.screen.TitleScreen;
 
 /**
@@ -11,9 +13,9 @@ import inf112.skeleton.app.screen.TitleScreen;
  */
 public class TitleScreenInputHandler extends InputAdapter {
     private RoboRally game;
-    private TitleScreen screen;
+    private Screen screen;
 
-    public TitleScreenInputHandler(RoboRally aGame, TitleScreen aScreen) {
+    public TitleScreenInputHandler(RoboRally aGame, Screen aScreen) {
         game = aGame;
         screen = aScreen;
     }

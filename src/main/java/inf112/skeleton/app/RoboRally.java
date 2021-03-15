@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import inf112.skeleton.app.screen.GameScreen;
+import inf112.skeleton.app.screen.MultiplayerScreen;
 import inf112.skeleton.app.screen.TitleScreen;
 
 public class RoboRally extends Game {
@@ -37,9 +38,18 @@ public class RoboRally extends Game {
         this.setScreen(new GameScreen(this));
     }
 
-    public void pauseGame(){
+    public void goToMenu(){
         this.getScreen().dispose();
         this.setScreen(new TitleScreen(this));
+    }
+
+    public void goToMultiplayer(){
+        this.getScreen().dispose();
+        this.setScreen(new MultiplayerScreen(this));
+    }
+
+    public void goToOptions(){
+
     }
 
     public void setFullscreen(){
