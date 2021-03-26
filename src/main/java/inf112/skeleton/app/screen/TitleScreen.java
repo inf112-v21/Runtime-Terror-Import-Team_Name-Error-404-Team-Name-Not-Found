@@ -25,6 +25,10 @@ public class TitleScreen extends ParentScreen{
     Sprite backgroundSprite;
     SpriteBatch spriteBatch;
 
+    private HorizontalGroup mainMenu;
+    private HorizontalGroup multiplayerMenu;
+    private HorizontalGroup optionsMenu;
+
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
@@ -36,9 +40,15 @@ public class TitleScreen extends ParentScreen{
 
         Stack stack = new Stack();
 
-        stack.addActor(createMainMenu());
-        stack.addActor(createMultiplayerMenu());
-        stack.addActor(createOptionsMenu());
+        mainMenu = createMainMenu();
+        multiplayerMenu = createMultiplayerMenu();
+        optionsMenu = createOptionsMenu();
+
+        stack.addActor(mainMenu);
+        stack.addActor(multiplayerMenu);
+        stack.addActor(optionsMenu);
+
+
 
         table.add(stack);
 
@@ -67,7 +77,10 @@ public class TitleScreen extends ParentScreen{
 
         // BUTTONS
 
-        TextButton textButton = new TextButton("Play", RoboRally.skin);
+        TextButton textButton;
+
+
+        textButton = new TextButton("Play", RoboRally.skin);
         textButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
@@ -84,7 +97,8 @@ public class TitleScreen extends ParentScreen{
         textButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.goToMultiplayer();
+                mainMenu.setVisible(false);
+                multiplayerMenu.setVisible(true);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -97,7 +111,8 @@ public class TitleScreen extends ParentScreen{
         textButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
-                game.goToOptions();
+                mainMenu.setVisible(false);
+                optionsMenu.setVisible(true);
             }
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
@@ -126,6 +141,55 @@ public class TitleScreen extends ParentScreen{
         horizontalGroup.align(Align.center);
         horizontalGroup.wrap();
         horizontalGroup.wrapSpace(5.0f);
+        horizontalGroup.setVisible(false);
+
+
+        TextButton textButton;
+        TextField textField;
+
+        textButton = new TextButton("Host", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textField = new TextField(null, RoboRally.skin);
+        textField.setMessageText("IP ADDRESS");
+        horizontalGroup.addActor(textField);
+
+        textButton = new TextButton("Join", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textButton = new TextButton("Back", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                multiplayerMenu.setVisible(false);
+                mainMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
 
         return horizontalGroup;
     }
@@ -135,7 +199,24 @@ public class TitleScreen extends ParentScreen{
         horizontalGroup.align(Align.center);
         horizontalGroup.wrap();
         horizontalGroup.wrapSpace(5.0f);
+        horizontalGroup.setVisible(false);
 
+        TextButton textButton;
+
+
+        textButton = new TextButton("Back", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                optionsMenu.setVisible(false);
+                mainMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
 
         return horizontalGroup;
     }
