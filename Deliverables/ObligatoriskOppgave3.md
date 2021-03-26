@@ -42,7 +42,10 @@ Vi har prioritert å få multiplayer til å fungere og det å få programmerings
 
 **Hvordan fungerer gruppedynamikken og kommunikasjonen?**
 
-Vi har fått litt svekket gruppedynamikk og kommunikasjon i det siste. Alle i gruppen har vært opptatt med forskjellige fag som har kollidert med møter og arbeid på prosjektet. Vi har klart å kommunisere en del utenfor møtene om viktige ting å ta opp hvis noen gikk glipp av informasjonen.
+Vi har fått litt svekket gruppedynamikk og blitt mindre kommunikasjon i det siste. Alle i gruppen har vært opptatt med 
+forskjellige fag som har kollidert med møter og arbeid på prosjektet. Vi har klart å kommunisere en del utenfor møtene 
+om viktige ting å ta opp hvis noen gikk glipp av informasjonen. 
+Ellers så kommuniserer vi på samme måte som vi skrev i innlevering 2 fremdeles. 
 
 
 ## Oppgave 2
