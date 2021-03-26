@@ -52,6 +52,10 @@ Vi jobbet mye med feature (multiplayer) som ligger i en utviklingsbranch som ikk
 
 Alle brukerhistoriene og oppgavene vi jobber med er en del av prosjektbrettet på Github hvor brukerhistoriene er kortene.
 
+BUGS:
+
+Vi er klar over klassen Player ikke blir brukt , men den er for fremtidig bruk så vi har latt den stått for nå.
+
 
 ## Oppgave 3
 
