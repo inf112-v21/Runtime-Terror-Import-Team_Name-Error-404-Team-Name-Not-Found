@@ -2,6 +2,8 @@
 
 ## Oppgave 1
 
+Møtereferatene fra hver uke kan finnes på vår [wiki](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/wiki). Fra og med møte 12.
+
 
 **Hvordan fungerer rollene i teamet? Trenger dere å oppdatere hvem som er teamlead eller kundekontakt?**
 
