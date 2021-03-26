@@ -64,6 +64,4 @@ public class RobotTest extends TestCase {
         assertEquals(expected.getPosition().getX(), robot.getPosition().getX());
         assertEquals(expected.getPosition().getY(), robot.getPosition().getY());
     }
-
-
 }

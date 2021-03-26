@@ -5,8 +5,7 @@ import com.badlogic.gdx.InputAdapter;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.screen.GameScreen;
 
-/**
- * a class that handles the input form keyboard when playing, making us able to play with the arrow keys
+/** * a class that handles the input form keyboard when playing, making us able to play with the arrow keys
  *
  */
 public class GameScreenInputHandler extends InputAdapter {
