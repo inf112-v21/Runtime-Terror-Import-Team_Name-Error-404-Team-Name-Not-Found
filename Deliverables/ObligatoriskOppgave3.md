@@ -59,7 +59,7 @@ Vi er klar over klassen Player ikke blir brukt , men den er for fremtidig bruk s
 
 ## Oppgave 3
 
-![Class Diagram](Diagram/classdiagram.png?raw=true "Class Diagram")
+![Class Diagram](Diagram/classdiagram2.png?raw=true "Class Diagram")
 
 
 
