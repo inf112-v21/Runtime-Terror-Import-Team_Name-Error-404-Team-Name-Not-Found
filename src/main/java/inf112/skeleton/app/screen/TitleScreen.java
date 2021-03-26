@@ -7,8 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
 import inf112.skeleton.app.RoboRally;
 import inf112.skeleton.app.inputHandlers.TitleScreenInputHandler;
@@ -26,24 +25,34 @@ public class TitleScreen extends ParentScreen{
     Sprite backgroundSprite;
     SpriteBatch spriteBatch;
 
+    private HorizontalGroup mainMenu;
+    private HorizontalGroup multiplayerMenu;
+    private HorizontalGroup optionsMenu;
+
     public TitleScreen(RoboRally aGame) {
         super(aGame);
         inputMultiplexer.addProcessor(new TitleScreenInputHandler(game, this));
 
         initBackgroundImage();
 
-        int row_height = Gdx.graphics.getWidth() / 12;
-        int center = Gdx.graphics.getWidth()/2;
+        Table table = new Table();
+        table.setFillParent(true);
 
-        Label title = makeTitleLabel(row_height);
+        Stack stack = new Stack();
 
-        TextButton playButton = makePlayButton(center);
+        mainMenu = createMainMenu();
+        multiplayerMenu = createMultiplayerMenu();
+        optionsMenu = createOptionsMenu();
 
-        /*
-         * Add the elements to the stage
-         */
-        stage.addActor(title);
-        stage.addActor(playButton);
+        stack.addActor(mainMenu);
+        stack.addActor(multiplayerMenu);
+        stack.addActor(optionsMenu);
+
+
+
+        table.add(stack);
+
+        stage.addActor(table);
     }
 
     private void initBackgroundImage() {
@@ -55,26 +64,24 @@ public class TitleScreen extends ParentScreen{
         spriteBatch = new SpriteBatch();
     }
 
-    private Label makeTitleLabel(int row_height) {
-        /*
-         * Title label
-         */
-        Label title = new Label("RoboRally", RoboRally.skin, "default");
-        title.setSize(Gdx.graphics.getWidth(), row_height);
-        title.setPosition(0,Gdx.graphics.getHeight()- row_height *3);
-        title.setAlignment(Align.center);
-        return title;
-    }
+    private HorizontalGroup createMainMenu() {
+        HorizontalGroup horizontalGroup = new HorizontalGroup();
+        horizontalGroup.align(Align.center);
+        horizontalGroup.wrap();
+        horizontalGroup.wrapSpace(5.0f);
 
-    private TextButton makePlayButton(int center) {
-        /*
-         * Play button
-         */
-        TextButton playButton = new TextButton("Play", RoboRally.skin, "default");
-        playButton.setWidth(center);
-        playButton.setPosition(center -playButton.getWidth()/2,
-                center -playButton.getHeight()/2);
-        playButton.addListener(new InputListener(){
+        // TITLE
+
+        Label label = new Label("RoboRally", RoboRally.skin, "title");
+        horizontalGroup.addActor(label);
+
+        // BUTTONS
+
+        TextButton textButton;
+
+
+        textButton = new TextButton("Play", RoboRally.skin);
+        textButton.addListener(new InputListener(){
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
                 game.startGame();
@@ -84,8 +91,136 @@ public class TitleScreen extends ParentScreen{
                 return true;
             }
         });
-        return playButton;
+        horizontalGroup.addActor(textButton);
+
+        textButton = new TextButton("Multiplayer", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                mainMenu.setVisible(false);
+                multiplayerMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textButton = new TextButton("Options", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                mainMenu.setVisible(false);
+                optionsMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textButton = new TextButton("Exit", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                Gdx.app.exit();
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+        return horizontalGroup;
     }
+
+    private HorizontalGroup createMultiplayerMenu() {
+        HorizontalGroup horizontalGroup = new HorizontalGroup();
+        horizontalGroup.align(Align.center);
+        horizontalGroup.wrap();
+        horizontalGroup.wrapSpace(5.0f);
+        horizontalGroup.setVisible(false);
+
+
+        TextButton textButton;
+        TextField textField;
+
+        textButton = new TextButton("Host", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textField = new TextField(null, RoboRally.skin);
+        textField.setMessageText("IP ADDRESS");
+        horizontalGroup.addActor(textField);
+
+        textButton = new TextButton("Join", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        textButton = new TextButton("Back", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                multiplayerMenu.setVisible(false);
+                mainMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        return horizontalGroup;
+    }
+
+    private HorizontalGroup createOptionsMenu() {
+        HorizontalGroup horizontalGroup = new HorizontalGroup();
+        horizontalGroup.align(Align.center);
+        horizontalGroup.wrap();
+        horizontalGroup.wrapSpace(5.0f);
+        horizontalGroup.setVisible(false);
+
+        TextButton textButton;
+
+
+        textButton = new TextButton("Back", RoboRally.skin);
+        textButton.addListener(new InputListener(){
+            @Override
+            public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+                optionsMenu.setVisible(false);
+                mainMenu.setVisible(true);
+            }
+            @Override
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
+                return true;
+            }
+        });
+        horizontalGroup.addActor(textButton);
+
+        return horizontalGroup;
+    }
+
 
     @Override
     public void show() {

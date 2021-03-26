@@ -22,7 +22,7 @@ public class GameScreenInputHandler extends InputAdapter {
     public boolean keyUp(int keycode) {
         switch (keycode) {
             case Input.Keys.ESCAPE:
-                game.pauseGame();
+                game.goToMenu();
                 break;
             case Input.Keys.UP:
             case Input.Keys.W:

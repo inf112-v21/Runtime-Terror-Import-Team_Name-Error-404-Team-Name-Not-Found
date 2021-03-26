@@ -37,7 +37,7 @@ public class RoboRally extends Game {
         this.setScreen(new GameScreen(this));
     }
 
-    public void pauseGame(){
+    public void goToMenu(){
         this.getScreen().dispose();
         this.setScreen(new TitleScreen(this));
     }
