@@ -70,7 +70,7 @@
 "com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle": {
 	"default": {
 		"font": "arial_black",
-		"fontColor": "black"
+		"fontColor": "red"
 	},
     "lobby": {
         "font": "arial_black",
@@ -80,7 +80,7 @@
 "com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle": {
 	"default": {
 		"font": "arial_black",
-		"fontColor": "blue",
+		"fontColor": "red",
 		"downFontColor": "red",
 		"overFontColor": "black"
 	},

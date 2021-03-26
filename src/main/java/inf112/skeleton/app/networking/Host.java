@@ -17,6 +17,7 @@ public class Host {
     private boolean playing = true;
     private final ServerSocket serverSocket;
     private String gameState;
+    public final Boolean[] playersRyd;
 
     public Host(String hostName){
     ServerSocketHints serverH = new ServerSocketHints();
@@ -25,6 +26,7 @@ public class Host {
     this.serverSocket = Gdx.net.newServerSocket(Net.Protocol.TCP, hostName, port, serverH);
     playersConnected = new String[4];
     servers = new Server[4];
+    playersRyd = new Boolean[4];
     Arrays.fill(playersConnected, " ");
     gameState = "waiting";
 
@@ -36,7 +38,7 @@ public class Host {
                     System.out.print("Connection established: ");
                     System.out.println(socketConnected.getRemoteAddress());
                 } catch (com.badlogic.gdx.utils.GdxRuntimeException e) {
-                    System.out.println("no connection");
+                    System.out.println(e);
                     playing = false;
                     break;
                 }
@@ -66,6 +68,10 @@ public class Host {
         }
         serverSocket.dispose();
         playing = false;
+    }
+
+    public void ready(int num) {
+        playersRyd[num] = true;
     }
 
     public String getGameState(){

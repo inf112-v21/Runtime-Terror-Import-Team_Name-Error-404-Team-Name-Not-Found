@@ -45,6 +45,11 @@ public class Server implements Runnable{
         return reply.toString();
     }
 
+    private String ready() {
+        host.ready(num);
+        return "";
+    }
+
     private String[] parse(String msg) {
         try {
             return msg.split(",");

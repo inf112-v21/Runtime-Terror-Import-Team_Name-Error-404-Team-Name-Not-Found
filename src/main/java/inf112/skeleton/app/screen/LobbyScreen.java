@@ -145,7 +145,7 @@ public class LobbyScreen extends ParentScreen {
         startButton.addListener(new InputListener() {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                game.startGame();
+                setGameStart();
             }
 
             @Override

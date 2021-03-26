@@ -37,6 +37,10 @@ public class Client {
         sendReceive("stopClient");
     }
 
+    public void ready() {
+        sendReceive("ready");
+    }
+
     public String[] getPlayers() {
         String reply = sendReceive("getPlayers");
         return reply.split(",");
