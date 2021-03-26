@@ -18,7 +18,9 @@ You move around by using the arrow keys or A,W,S,D keys
 The goal is at this moment in development to get to any flag to win, but be careful if you set on a hole you die.
 
 ## Known bugs
-No known bugs (2021-03-05)
+com.badlogic.gdx.utils.GdxRuntimeException: Error accepting socket. when on lobby screen after some time (2021-03-25)
+
+game freezing and crashing when clicking on leave button on lobby screen (2021-03-26)
 
 ## Fixed bugs
 nullpointerexception bug when closing the program, cant dispose properly (Fixed 2021-03-05) 
