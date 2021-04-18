@@ -9,9 +9,6 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.IntVector;
 import inf112.skeleton.app.board.Location;
 
-import java.util.ArrayList;
-import java.util.Objects;
-
 /*
  * a class for the object Robot
  */
@@ -24,6 +21,9 @@ public class Robot {
     public TiledMapTileLayer.Cell playerCell_win;
 
     private Board board;
+
+    private int Health;
+    private int lives;
   
     /**
      * a constructor for the robot object
@@ -34,6 +34,9 @@ public class Robot {
     public Robot(Location location, Board aBoard) {
         this.location = location;
         this.board = aBoard;
+        this.Health = getMaxHealth();
+        this.lives = getMaxLives();
+
     }
 
     /**
@@ -98,6 +101,19 @@ public class Robot {
         return 10;
     }
 
+    public void takeDamage(int amount){
+        this.Health -= amount;
+        System.out.println("Robot has taken damage form laser: " + amount + " and has now: " + this.Health + " health left.");
+    }
+
+    public void takeLife() {
+        if (this.Health <= 0){
+            this.lives -= 1;
+            this.Health = getMaxHealth();
+            System.out.println("Robot has lost a life and has: " + this.lives + " lives left.");
+        }
+    }
+
     /**
      * set the location of a robot to a (x,y) position
      *
@@ -149,11 +165,6 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
-                            IntVector pos = this.getPosition();
-                            board.checkBelts(this);
-                            if (pos == getPosition()) {
-                                board.checkExpressBelts(this);
-                            }
                         }
                     }
                 }
@@ -168,10 +179,6 @@ public class Robot {
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
                             IntVector pos = this.getPosition();
-                            board.checkBelts(this);
-                            if (pos == getPosition()) {
-                                board.checkExpressBelts(this);
-                            }
                         }
                     }
                 }
@@ -185,11 +192,6 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
-                            IntVector pos = this.getPosition();
-                            board.checkBelts(this);
-                            if (pos == getPosition()) {
-                                board.checkExpressBelts(this);
-                            }
                         }
                     }
 
@@ -204,11 +206,6 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
-                            IntVector pos = this.getPosition();
-                            board.checkBelts(this);
-                            if (pos == getPosition()) {
-                                board.checkExpressBelts(this);
-                            }
                         }
                     }
 
@@ -217,6 +214,13 @@ public class Robot {
             default:
                 break;
         }
+        IntVector pos = this.getPosition();
+        board.checkBelts(this);
+        if (pos == getPosition()) {
+            board.checkExpressBelts(this);
+        }
+        board.checkOnLaser(this);
+        takeLife();
     }
 
     public void UseCards(CardType type){

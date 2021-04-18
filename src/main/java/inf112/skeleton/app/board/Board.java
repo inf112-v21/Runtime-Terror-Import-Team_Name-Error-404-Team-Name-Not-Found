@@ -17,6 +17,7 @@ public class Board {
     public ArrayList<Wall> walls;
     public ArrayList<Belt> belts;
     public ArrayList<ExpressBelt> expressBelts;
+    public ArrayList<Laser> lasers;
 
     public TiledMap map_TiledMap;
 
@@ -27,6 +28,7 @@ public class Board {
     private TiledMapTileLayer walls_MapLayer;
     private TiledMapTileLayer belts_MapLayer;
     private TiledMapTileLayer expressBelts_MapLayer;
+    private TiledMapTileLayer laser_MapLayer;
 
     private final int height;
     private final int width;
@@ -51,6 +53,7 @@ public class Board {
         walls_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Walls");
         belts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Belts");
         expressBelts_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Express_Belts");
+        laser_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Lasers");
 
 
 
@@ -59,6 +62,7 @@ public class Board {
         walls = new ArrayList<>();
         belts = new ArrayList<>();
         expressBelts = new  ArrayList<>();
+        lasers = new ArrayList<>();
 
         initLists();
     }
@@ -95,6 +99,7 @@ public class Board {
         walls = new ArrayList<>();
         belts = new ArrayList<>();
         expressBelts = new ArrayList<>();
+        lasers = new ArrayList<>();
 
         this.players_MapLayer = (TiledMapTileLayer) map_TiledMap.getLayers().get("Players");
 
@@ -110,6 +115,7 @@ public class Board {
         initWalls();
         initBelts();
         initExpressBelts();
+        initLasers();
     }
 
 
@@ -252,6 +258,29 @@ public class Board {
         }
     }
 
+    public void initLasers() {
+        for (int y = 0; y < height; y++){
+            for (int x = 0; x < width; x++){
+                TiledMapTileLayer.Cell cell = laser_MapLayer.getCell(x, y);
+                if (cell != null) {
+                    switch (cell.getTile().getId()) {
+                        case 40:
+                        case 42:
+                        case 35:
+                        case 41:
+                            lasers.add(new Laser(new Location(x, y, Direction.NORTH), LaserType.SINGLE));
+                            break;
+                        case 82:
+                            lasers.add(new Laser(new Location(x, y, Direction.NORTH), LaserType.DOUBLE));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
     /**
      * check if the input (x,y) position mach with the wining flag
      *
@@ -376,6 +405,20 @@ public class Board {
         }
     }
 
+
+    public void checkOnLaser(Robot robot){
+        IntVector pos = robot.getPosition();
+        for (Laser laser : lasers) {
+            if (laser.getPosition().equals(pos)) {
+                if (laser.getLaserType() == LaserType.SINGLE) {
+                    robot.takeDamage(1);
+                }
+                else{
+                    robot.takeDamage(2);
+                }
+            }
+        }
+    }
 
     /**
      * check if there is a belt on a location
