@@ -53,22 +53,22 @@ public class GameScreenInputHandler extends InputAdapter {
                     game.render();
                 }
                 break;
-            case Input.Keys.NUM_1:
+            case Input.Keys.NUM_4:
                 if (screen != null){
                     screen.robot.UseCards(CardType.MOVE_BACKWARDS);
                 }
                 break;
-            case Input.Keys.NUM_2:
+            case Input.Keys.NUM_1:
                 if (screen != null) {
                     screen.robot.UseCards(CardType.MOVE_FORWARDS_ONE);
                 }
                 break;
-            case Input.Keys.NUM_3:
+            case Input.Keys.NUM_2:
                 if (screen != null) {
                     screen.robot.UseCards(CardType.MOVE_FORWARDS_TWO);
                 }
                 break;
-            case Input.Keys.NUM_4:
+            case Input.Keys.NUM_3:
                 if (screen != null) {
                     screen.robot.UseCards(CardType.MOVE_FORWARDS_THREE);
                 }
