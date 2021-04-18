@@ -108,6 +108,10 @@ public class Robot {
         this.location = new Location(x, y, location.getDirection());
     }
 
+    public void setDirection(Direction direction){
+        this.location = new Location(location.getPosition(), direction);
+    }
+
 
     /*
      * change the texture of the robot when it has won the game
@@ -213,6 +217,59 @@ public class Robot {
             default:
                 break;
         }
+    }
+
+    public void UseCards(Card card, Robot robot){
+        CardType type = card.getCardType();
+        switch (type){
+            case MOVE_FORWARDS_THREE:
+                for (int i = 0; i < 3; i++) {
+                    robot.walk(robot.getDirection());
+                }
+                break;
+            case MOVE_FORWARDS_TWO:
+                for (int i = 0; i < 2; i++) {
+                    robot.walk(robot.getDirection());
+                }
+                break;
+            case MOVE_FORWARDS_ONE:
+                robot.walk(robot.getDirection());
+                break;
+            case MOVE_BACKWARDS:
+                robot.walk(giveDirection(robot.getDirection().getDegrees()+180));
+                break;
+            case ROTATE_LEFT:
+                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+270));
+                break;
+            case ROTATE_RIGHT:
+                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+90));
+                break;
+            case TURN_AROUND:
+                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+180));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public Direction giveDirection(double degrees){
+        switch ((int) degrees){
+            case 360:
+            case 0:
+                return Direction.NORTH;
+            case 540:
+            case 180:
+                return Direction.SOUTH;
+            case 450:
+            case 90:
+                return Direction.EAST;
+            case 630:
+            case 270:
+                return Direction.WEST;
+            default:
+                break;
+        }
+        return null;
     }
 
 
