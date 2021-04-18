@@ -129,7 +129,9 @@ public class Robot {
     }
 
     public void setDirection(Direction direction){
+        Direction old = this.location.getDirection();
         this.location = new Location(location.getPosition(), direction);
+        System.out.println("Robot got a new Direction form: " + old + " to: " + location.getDirection());
     }
 
 
@@ -141,6 +143,7 @@ public class Robot {
         cellState = playerCell_win;
         erase();
         draw();
+        System.out.println("robot has won by won");
     }
 
     /*
@@ -151,6 +154,7 @@ public class Robot {
         cellState = playerCell_dead;
         erase();
         draw();
+        System.out.println("robot has died");
     }
 
     /**
@@ -169,10 +173,14 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() + 1);
                             draw();
+                            System.out.println("Robot has walked 1 step " + this.getDirection().toString() + " and has a new position: " + this.getPosition().getX() + "," + this.getPosition().getY());
                         }
+                    } else {
+                        System.out.println("Cant walk there, because its a wall there");
                     }
+                } else {
+                    System.out.println("Cant walk there, because its a wall there");
                 }
-
                 break;
             case EAST:
                 Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
@@ -182,11 +190,14 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() + 1, getPosition().getY());
                             draw();
-                            IntVector pos = this.getPosition();
+                            System.out.println("Robot has walked 1 step " + this.getDirection().toString() + "and has a new position: " + this.getPosition().getX() + "," + this.getPosition().getY());
                         }
+                    } else {
+                        System.out.println("Cant walk there, because its a wall there");
                     }
+                } else {
+                    System.out.println("Cant walk there, because its a wall there");
                 }
-
                 break;
             case WEST:
                 Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
@@ -196,11 +207,14 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX() - 1, getPosition().getY());
                             draw();
+                            System.out.println("Robot has walked 1 step " + this.getDirection().toString() + "and has a new position: " + this.getPosition().getX() + "," + this.getPosition().getY());
                         }
+                    } else {
+                        System.out.println("Cant walk there, because its a wall there");
                     }
-
+                } else {
+                    System.out.println("Cant walk there, because its a wall there");
                 }
-
                 break;
             case SOUTH:
                 Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
@@ -210,9 +224,13 @@ public class Robot {
                             erase();
                             setLocation(getPosition().getX(), getPosition().getY() - 1);
                             draw();
+                            System.out.println("Robot has walked 1 step " + this.getDirection().toString() + "and has a new position: " + this.getPosition().getX() + "," + this.getPosition().getY());
                         }
+                    } else {
+                        System.out.println("Cant walk there, because its a wall there");
                     }
-
+                } else {
+                    System.out.println("Cant walk there, because its a wall there");
                 }
                 break;
             default:
@@ -230,28 +248,35 @@ public class Robot {
     public void UseCards(CardType type){
         switch (type){
             case MOVE_FORWARDS_THREE:
+                System.out.println("Robot has used a card with type " + CardType.MOVE_FORWARDS_THREE);
                 for (int i = 0; i < 3; i++) {
                     walk(getDirection());
                 }
                 break;
             case MOVE_FORWARDS_TWO:
+                System.out.println("Robot has used a card with type " + CardType.MOVE_FORWARDS_TWO);
                 for (int i = 0; i < 2; i++) {
                     walk(getDirection());
                 }
                 break;
             case MOVE_FORWARDS_ONE:
+                System.out.println("Robot has used a card with type " + CardType.MOVE_FORWARDS_ONE);
                 walk(getDirection());
                 break;
             case MOVE_BACKWARDS:
+                System.out.println("Robot has used a card with type " + CardType.MOVE_BACKWARDS);
                 walk(giveDirection(getDirection().getDegrees()+180));
                 break;
             case ROTATE_LEFT:
+                System.out.println("Robot has used a card with type " + CardType.ROTATE_LEFT);
                 setDirection(giveDirection(getDirection().getDegrees()+270));
                 break;
             case ROTATE_RIGHT:
+                System.out.println("Robot has used a card with type " + CardType.ROTATE_RIGHT);
                 setDirection(giveDirection(getDirection().getDegrees()+90));
                 break;
             case TURN_AROUND:
+                System.out.println("Robot has used a card with type " + CardType.TURN_AROUND);
                 setDirection(giveDirection(getDirection().getDegrees()+180));
                 break;
             default:

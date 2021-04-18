@@ -291,6 +291,7 @@ public class Board {
         IntVector pos = robot.getPosition();
         for (Flag flag : flags) {
             if (flag.getPosition().equals(pos)) {
+                System.out.println("Robot walked on a flag");
                 return true;
             }
         }
@@ -307,6 +308,7 @@ public class Board {
         IntVector pos = robot.getPosition();
         for (Hole hole : holes) {
             if (hole.getPosition().equals(pos)) {
+                System.out.println("Robot walked on into a hole");
                 return true;
             }
         }
@@ -328,6 +330,7 @@ public class Board {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
                             robot.draw();
+                            System.out.println("Robot stepped on a belt faceing: " + Direction.NORTH + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                         }
                         break;
                     case EAST:
@@ -335,6 +338,7 @@ public class Board {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
                             robot.draw();
+                            System.out.println("Robot stepped on a belt faceing: " + Direction.EAST + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                         }
                         break;
                     case WEST:
@@ -342,6 +346,7 @@ public class Board {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
                             robot.draw();
+                            System.out.println("Robot stepped on a belt faceing: " + Direction.WEST + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                         }
                         break;
                     case SOUTH:
@@ -349,6 +354,7 @@ public class Board {
                             robot.erase();
                             robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
                             robot.draw();
+                            System.out.println("Robot stepped on a belt faceing: " + Direction.SOUTH + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                         }
                         break;
                     default:
@@ -374,6 +380,7 @@ public class Board {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() + 1);
                                 robot.draw();
+                                System.out.println("Robot stepped on a express belt faceing: " + Direction.NORTH + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                             }
                             break;
                         case EAST:
@@ -381,6 +388,7 @@ public class Board {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX() + 1, robot.getPosition().getY());
                                 robot.draw();
+                                System.out.println("Robot stepped on a express belt faceing: " + Direction.EAST + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                             }
                             break;
                         case WEST:
@@ -388,6 +396,7 @@ public class Board {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX() - 1, robot.getPosition().getY());
                                 robot.draw();
+                                System.out.println("Robot stepped on a express belt faceing: " + Direction.WEST + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                             }
                             break;
                         case SOUTH:
@@ -395,6 +404,7 @@ public class Board {
                                 robot.erase();
                                 robot.setLocation(robot.getPosition().getX(), robot.getPosition().getY() - 1);
                                 robot.draw();
+                                System.out.println("Robot stepped on a express belt faceing: " + Direction.SOUTH + " and has a new position: "+ robot.getPosition().getX()+","+robot.getPosition().getY());
                             }
                             break;
                         default:
@@ -411,9 +421,11 @@ public class Board {
         for (Laser laser : lasers) {
             if (laser.getPosition().equals(pos)) {
                 if (laser.getLaserType() == LaserType.SINGLE) {
+                    System.out.println("Robot has walked on a single laser");
                     robot.takeDamage(1);
                 }
                 else{
+                    System.out.println("Robot has walked on a double laser");
                     robot.takeDamage(2);
                 }
             }
@@ -461,6 +473,7 @@ public class Board {
         if (x >= 0 && x < getHeight()) {
             return y >= 0 && y < getWidth();
         }
+        System.out.println("Cant walk there, because its outside the board");
         return false;
     }
 
