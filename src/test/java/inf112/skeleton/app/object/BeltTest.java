@@ -18,7 +18,7 @@ class BeltTest {
         board.belts.add(new Belt(new Location(2,3, Direction.NORTH)));
         robot = new Robot(new Location(2,2, Direction.NORTH), board);
 
-        robot.walk("north");
+        robot.walk(Direction.NORTH);
 
         Location expected = new Location(2,4, Direction.NORTH);
 
@@ -31,7 +31,7 @@ class BeltTest {
         board.belts.add(new Belt(new Location(2,1, Direction.SOUTH)));
         robot = new Robot(new Location(2,2, Direction.NORTH), board);
 
-        robot.walk("south");
+        robot.walk(Direction.SOUTH);
 
         Location expected = new Location(2,0, Direction.NORTH);
 
@@ -44,7 +44,7 @@ class BeltTest {
         board.belts.add(new Belt(new Location(1,2, Direction.WEST)));
         robot = new Robot(new Location(2,2, Direction.NORTH), board);
 
-        robot.walk("west");
+        robot.walk(Direction.WEST);
 
         Location expected = new Location(0,2, Direction.NORTH);
 
@@ -57,7 +57,7 @@ class BeltTest {
         board.belts.add(new Belt(new Location(3,2, Direction.EAST)));
         robot = new Robot(new Location(2,2, Direction.NORTH), board);
 
-        robot.walk("east");
+        robot.walk(Direction.EAST);
 
         Location expected = new Location(4,2, Direction.NORTH);
 
@@ -70,7 +70,7 @@ class BeltTest {
         board.belts.add(new Belt(new Location(2,3, Direction.EAST)));
         robot = new Robot(new Location(2,2, Direction.NORTH), board);
 
-        robot.walk("north");
+        robot.walk(Direction.NORTH);
 
         Location expected = new Location(3,3, Direction.NORTH);
 

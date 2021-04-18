@@ -43,5 +43,15 @@ public class Player {
         programmingRegister.clear();
     }
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
 
+    public Robot getRobot() {
+        return robot;
+    }
+
+    public ArrayList<Card> getProgrammingRegister() {
+        return programmingRegister;
+    }
 }

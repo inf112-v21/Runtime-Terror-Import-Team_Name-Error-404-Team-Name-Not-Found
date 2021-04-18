@@ -376,6 +376,18 @@ public class Board {
         }
     }
 
+    public void checkCards(Card card, Robot robot){
+        CardType type = card.getCardType();
+        IntVector pos = robot.getPosition();
+        switch (type){
+            case MOVE_FORWARDS_THREE:
+                for (int i = 0; i < 3; i++) {
+                    robot.walk(robot.getDirection());
+                }
+        }
+
+    }
+
     /**
      * check if there is a belt on a location
      *
