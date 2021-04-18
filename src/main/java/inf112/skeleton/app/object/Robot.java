@@ -219,8 +219,7 @@ public class Robot {
         }
     }
 
-    public void UseCards(Card card){
-        CardType type = card.getCardType();
+    public void UseCards(CardType type){
         switch (type){
             case MOVE_FORWARDS_THREE:
                 for (int i = 0; i < 3; i++) {
