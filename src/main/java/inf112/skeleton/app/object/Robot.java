@@ -101,6 +101,10 @@ public class Robot {
         return 10;
     }
 
+    public int getHealth() {
+        return Health;
+    }
+
     public void takeDamage(int amount){
         this.Health -= amount;
         System.out.println("Robot has taken damage form laser: " + amount + " and has now: " + this.Health + " health left.");
