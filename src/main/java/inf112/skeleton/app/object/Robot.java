@@ -219,41 +219,41 @@ public class Robot {
         }
     }
 
-    public void UseCards(Card card, Robot robot){
+    public void UseCards(Card card){
         CardType type = card.getCardType();
         switch (type){
             case MOVE_FORWARDS_THREE:
                 for (int i = 0; i < 3; i++) {
-                    robot.walk(robot.getDirection());
+                    walk(getDirection());
                 }
                 break;
             case MOVE_FORWARDS_TWO:
                 for (int i = 0; i < 2; i++) {
-                    robot.walk(robot.getDirection());
+                    walk(getDirection());
                 }
                 break;
             case MOVE_FORWARDS_ONE:
-                robot.walk(robot.getDirection());
+                walk(getDirection());
                 break;
             case MOVE_BACKWARDS:
-                robot.walk(giveDirection(robot.getDirection().getDegrees()+180));
+                walk(giveDirection(getDirection().getDegrees()+180));
                 break;
             case ROTATE_LEFT:
-                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+270));
+                setDirection(giveDirection(getDirection().getDegrees()+270));
                 break;
             case ROTATE_RIGHT:
-                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+90));
+                setDirection(giveDirection(getDirection().getDegrees()+90));
                 break;
             case TURN_AROUND:
-                robot.setDirection(giveDirection(robot.getDirection().getDegrees()+180));
+                setDirection(giveDirection(getDirection().getDegrees()+180));
                 break;
             default:
                 break;
         }
     }
 
-    public Direction giveDirection(double degrees){
-        switch ((int) degrees){
+    public Direction giveDirection(int degrees){
+        switch (degrees){
             case 360:
             case 0:
                 return Direction.NORTH;

@@ -17,8 +17,6 @@ public class Player {
         this.gameElements = gameElements;
     }
 
-
-
     private void drawCard(){
         hand = gameElements.deck.getCards(9);
     }

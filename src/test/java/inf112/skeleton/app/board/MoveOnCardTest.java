@@ -22,7 +22,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,5,Direction.NORTH);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -35,7 +35,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,4,Direction.NORTH);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -48,7 +48,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,3,Direction.NORTH);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -61,7 +61,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,1,Direction.NORTH);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -74,7 +74,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,2,Direction.WEST);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -87,7 +87,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,2,Direction.EAST);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }
@@ -100,7 +100,7 @@ class MoveOnCardTest{
 
         Location expected = new Location(2,2,Direction.SOUTH);
 
-        robot.UseCards(card,robot);
+        robot.UseCards(card);
 
         assertEquals(expected.getPosition(),robot.getPosition());
     }

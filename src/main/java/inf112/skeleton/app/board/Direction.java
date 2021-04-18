@@ -12,16 +12,16 @@ public enum Direction {
     SOUTH(180), WEST(270);
 
 
-    private final double degrees;
+    private final int degrees;
 
     public static final List<Direction> DIRECTIONS = Arrays.asList(NORTH,EAST,SOUTH,WEST);
 
 
-    Direction(double degrees) {
+    Direction(int degrees) {
         this.degrees = degrees;
     }
 
-    public double getDegrees() {
+    public int getDegrees() {
         return degrees;
     }
 }
