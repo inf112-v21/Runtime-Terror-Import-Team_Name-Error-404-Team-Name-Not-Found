@@ -13,6 +13,8 @@ import inf112.skeleton.app.inputHandlers.GameScreenInputHandler;
 import inf112.skeleton.app.object.Robot;
 
 public class GameScreen extends ParentScreen {
+
+
     Board board;
 
     OrthogonalTiledMapRenderer renderer;
@@ -39,7 +41,7 @@ public class GameScreen extends ParentScreen {
          */
         camera = new OrthographicCamera();
         camera.setToOrtho(false, (float) board.getHeight(), (float) board.getWidth());
-
+        camera.translate(0,-1);
         /*
          * Render the tiles on to the camera
          */
@@ -70,9 +72,6 @@ public class GameScreen extends ParentScreen {
         camera.update();
         renderer.render();
 
-        stage.act();
-        stage.draw();
-
 
         /*
          * Here we check the win and death condition.
@@ -83,5 +82,19 @@ public class GameScreen extends ParentScreen {
         if (board.checkHole(robot)) {
             robot.onDeath();
         }
+    }
+
+    @Override
+    public void resize(int width, int height)
+    {
+        if (width > height) {
+            camera.viewportWidth = 12f* width/height;
+            camera.viewportHeight = 14f;
+        } else {
+            camera.viewportWidth = 12f;
+            camera.viewportHeight = 14f* height/width;
+        }
+        camera.update();
+        renderer.setView(camera);
     }
 }
