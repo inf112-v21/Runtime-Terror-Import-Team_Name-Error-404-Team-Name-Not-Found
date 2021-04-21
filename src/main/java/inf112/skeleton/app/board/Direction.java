@@ -8,38 +8,20 @@ import java.util.Arrays;
  *
  */
 public enum Direction {
-    NORTH(0, 0, -1, 1), EAST(90, 1, 0, 4 ),
-    SOUTH(180, -1, 0, 2), WEST(270, 0, 1, 8);
+    NORTH(0), EAST(90),
+    SOUTH(180), WEST(270);
 
 
-    private final double degrees;
-    private final int dx;
-    private final int dy;
-    private final int mask;
+    private final int degrees;
 
     public static final List<Direction> DIRECTIONS = Arrays.asList(NORTH,EAST,SOUTH,WEST);
 
 
-    Direction(double degrees, int dx, int dy, int mask) {
+    Direction(int degrees) {
         this.degrees = degrees;
-        this.dx = dx;
-        this.dy = dy;
-        this.mask = mask;
     }
 
-    public double getDegrees() {
+    public int getDegrees() {
         return degrees;
-    }
-
-    public int getDx() {
-        return dx;
-    }
-
-    public int getDy() {
-        return dy;
-    }
-
-    public int getMask(){
-        return mask;
     }
 }

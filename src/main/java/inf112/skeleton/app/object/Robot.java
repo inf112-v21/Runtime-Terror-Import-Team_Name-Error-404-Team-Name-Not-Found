@@ -108,6 +108,10 @@ public class Robot {
         this.location = new Location(x, y, location.getDirection());
     }
 
+    public void setDirection(Direction direction){
+        this.location = new Location(location.getPosition(), direction);
+    }
+
 
     /*
      * change the texture of the robot when it has won the game
@@ -134,10 +138,10 @@ public class Robot {
      *
      * @param way they way you want it to move
      */
-    public void walk(String way) {
+    public void walk(Direction way) {
         Wall wall = board.checkWall(this.getPosition());
         switch (way) {
-            case "north":
+            case NORTH:
                 Wall nextNorth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() +1));
                 if (wall == null || wall.getDirection() != Direction.NORTH) {
                     if(nextNorth == null || nextNorth.getDirection() != Direction.SOUTH) {
@@ -155,7 +159,7 @@ public class Robot {
                 }
 
                 break;
-            case "east":
+            case EAST:
                 Wall nextEast = board.checkWall(new IntVector(getPosition().getX()+1, getPosition().getY()));
                 if (wall == null || wall.getDirection() != Direction.EAST) {
                     if(nextEast == null || nextEast.getDirection() != Direction.WEST) {
@@ -173,7 +177,7 @@ public class Robot {
                 }
 
                 break;
-            case "west":
+            case WEST:
                 Wall nextWest = board.checkWall(new IntVector(getPosition().getX()-1, getPosition().getY()));
                 if (wall == null || wall.getDirection() != Direction.WEST){
                     if (nextWest == null || nextWest.getDirection() != Direction.EAST) {
@@ -192,7 +196,7 @@ public class Robot {
                 }
 
                 break;
-            case "south":
+            case SOUTH:
                 Wall nextSouth = board.checkWall(new IntVector(getPosition().getX(), getPosition().getY() -1));
                 if (wall == null || wall.getDirection() != Direction.SOUTH) {
                     if (nextSouth== null || nextSouth.getDirection() != Direction.NORTH) {
@@ -213,6 +217,58 @@ public class Robot {
             default:
                 break;
         }
+    }
+
+    public void UseCards(CardType type){
+        switch (type){
+            case MOVE_FORWARDS_THREE:
+                for (int i = 0; i < 3; i++) {
+                    walk(getDirection());
+                }
+                break;
+            case MOVE_FORWARDS_TWO:
+                for (int i = 0; i < 2; i++) {
+                    walk(getDirection());
+                }
+                break;
+            case MOVE_FORWARDS_ONE:
+                walk(getDirection());
+                break;
+            case MOVE_BACKWARDS:
+                walk(giveDirection(getDirection().getDegrees()+180));
+                break;
+            case ROTATE_LEFT:
+                setDirection(giveDirection(getDirection().getDegrees()+270));
+                break;
+            case ROTATE_RIGHT:
+                setDirection(giveDirection(getDirection().getDegrees()+90));
+                break;
+            case TURN_AROUND:
+                setDirection(giveDirection(getDirection().getDegrees()+180));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public Direction giveDirection(int degrees){
+        switch (degrees){
+            case 360:
+            case 0:
+                return Direction.NORTH;
+            case 540:
+            case 180:
+                return Direction.SOUTH;
+            case 450:
+            case 90:
+                return Direction.EAST;
+            case 630:
+            case 270:
+                return Direction.WEST;
+            default:
+                break;
+        }
+        return null;
     }
 
 

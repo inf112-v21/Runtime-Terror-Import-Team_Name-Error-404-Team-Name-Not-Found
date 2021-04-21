@@ -19,7 +19,7 @@ class ExpressBeltTest {
         board.expressBelts.add(new ExpressBelt(new Location(5,7, Direction.NORTH)));
         robot = new Robot(new Location(5,5, Direction.NORTH), board);
 
-        robot.walk("north");
+        robot.walk(Direction.NORTH);
 
         Location expected = new Location(5,8, Direction.NORTH);
 
@@ -33,7 +33,7 @@ class ExpressBeltTest {
         board.expressBelts.add(new ExpressBelt(new Location(5,3, Direction.SOUTH)));
         robot = new Robot(new Location(5,5, Direction.NORTH), board);
 
-        robot.walk("south");
+        robot.walk(Direction.SOUTH);
 
         Location expected = new Location(5,2, Direction.NORTH);
 
@@ -47,7 +47,7 @@ class ExpressBeltTest {
         board.expressBelts.add(new ExpressBelt(new Location(3,5, Direction.WEST)));
         robot = new Robot(new Location(5,5, Direction.NORTH), board);
 
-        robot.walk("west");
+        robot.walk(Direction.WEST);
 
         Location expected = new Location(2,5, Direction.NORTH);
 
@@ -61,7 +61,7 @@ class ExpressBeltTest {
         board.expressBelts.add(new ExpressBelt(new Location(7,5, Direction.EAST)));
         robot = new Robot(new Location(5,5, Direction.NORTH), board);
 
-        robot.walk("east");
+        robot.walk(Direction.EAST);
 
         Location expected = new Location(8,5, Direction.NORTH);
 
@@ -75,7 +75,7 @@ class ExpressBeltTest {
         board.expressBelts.add(new ExpressBelt(new Location(6,6, Direction.EAST)));
         robot = new Robot(new Location(5,5, Direction.NORTH), board);
 
-        robot.walk("north");
+        robot.walk(Direction.NORTH);
 
         Location expected = new Location(7,6, Direction.NORTH);
 

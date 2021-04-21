@@ -8,6 +8,7 @@ import inf112.skeleton.app.board.Direction;
 import inf112.skeleton.app.board.Location;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.Test;
+import org.lwjgl.system.CallbackI;
 
 
 public class RobotTest extends TestCase {
@@ -19,7 +20,7 @@ public class RobotTest extends TestCase {
     public void testWalkNorth() {
         board = new Board(5, 5);
         robot = new Robot(new Location(1, 1, Direction.NORTH), board);
-        robot.walk("north");
+        robot.walk(Direction.NORTH);
         Location expected = new Location(1, 2, Direction.NORTH);
         assertEquals(expected.getPosition().getX(), robot.getPosition().getX());
         assertEquals(expected.getPosition().getY(), robot.getPosition().getY());
@@ -29,7 +30,7 @@ public class RobotTest extends TestCase {
     public void testWalkEast() {
         board = new Board(5, 5);
         robot = new Robot(new Location(1, 1, Direction.NORTH), board);
-        robot.walk("east");
+        robot.walk(Direction.EAST);
         Location expected = new Location(2, 1, Direction.NORTH);
         assertEquals(expected.getPosition().getX(), robot.getPosition().getX());
         assertEquals(expected.getPosition().getY(), robot.getPosition().getY());
@@ -39,7 +40,7 @@ public class RobotTest extends TestCase {
     public void testWalkWest() {
         board = new Board(5, 5);
         robot = new Robot(new Location(1, 1, Direction.NORTH), board);
-        robot.walk("west");
+        robot.walk(Direction.WEST);
         Location expected = new Location(0, 1, Direction.NORTH);
         assertEquals(expected.getPosition().getX(), robot.getPosition().getX());
         assertEquals(expected.getPosition().getY(), robot.getPosition().getY());
@@ -49,7 +50,7 @@ public class RobotTest extends TestCase {
     public void testWalkSouth() {
         board = new Board(5, 5);
         robot = new Robot(new Location(1, 1, Direction.NORTH), board);
-        robot.walk("south");
+        robot.walk(Direction.SOUTH);
         Location expected = new Location(1, 0, Direction.NORTH);
         assertEquals(expected.getPosition().getX(), robot.getPosition().getX());
         assertEquals(expected.getPosition().getY(), robot.getPosition().getY());

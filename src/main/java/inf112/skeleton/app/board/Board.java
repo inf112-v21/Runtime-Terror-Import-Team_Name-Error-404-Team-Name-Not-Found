@@ -376,6 +376,7 @@ public class Board {
         }
     }
 
+
     /**
      * check if there is a belt on a location
      *

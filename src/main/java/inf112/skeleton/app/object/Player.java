@@ -17,8 +17,6 @@ public class Player {
         this.gameElements = gameElements;
     }
 
-
-
     private void drawCard(){
         hand = gameElements.deck.getCards(9);
     }
@@ -43,5 +41,15 @@ public class Player {
         programmingRegister.clear();
     }
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
 
+    public Robot getRobot() {
+        return robot;
+    }
+
+    public ArrayList<Card> getProgrammingRegister() {
+        return programmingRegister;
+    }
 }
