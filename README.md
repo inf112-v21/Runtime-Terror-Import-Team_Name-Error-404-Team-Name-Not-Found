@@ -16,10 +16,14 @@ To play the game you press the "play" button on the title screen that comes up a
 
 You move around by using the arrow keys or A,W,S,D keys
 
+You can use the game cards by using the number row from 1-7
+
 The goal is at this moment in development to get to any flag to win, but be careful if you set on a hole you die.
 
 ## Known bugs
-No known bugs (2021-03-05)
+When you resize the window from the default 1000x1000 pixels the buttons don't work as expected.
+The click handler for the buttons are defined absolutely with regard to the windows origin and
+therefore don't resize properly. See issue [#41](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/issues/41).
 
 ## Fixed bugs
 nullpointerexception bug when closing the program, cant dispose properly (Fixed 2021-03-05) 
