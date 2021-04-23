@@ -46,7 +46,8 @@ Og den som trykker merge på github får også litt flere commits pga merge comm
 [Prosjektbrettet](https://github.com/inf112-v21/Runtime-Terror-Import-Team_Name-Error-404-Team-Name-Not-Found/projects/1)
 ![Project board](Diagram/projectboard2.png?raw=true "Our project board on github")
 
-**Hvordan fungerer gruppedynamikken og kommunikasjonen nå i forhold til i starten?** 
+**Hvordan fungerer gruppedynamikken og kommunikasjonen nå i forhold til i starten?**
+
 Den har vært bra gjennom hele året men har variert litt til tider. Det startet veldig bra i starten før andre fag begynte å bli mer krevende, så har det vært en merkbar reduksjon i både dynamikk og kommunikasjon. Grunnen til dette er fordi vi alle har hatt forskjellige fag med frister og innleveringer som ikke harmonerer med de andre på gruppen. Men vi har fortsatt holdt møter hver onsdag og fredag samt hatt kommunikasjonen rundt prosjektet jevnlig. Vi har også vært gode på å kommunisere om forfall på møtene.
 
 
