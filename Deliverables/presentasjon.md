@@ -16,3 +16,6 @@
 
 ## Hva tror vi hadde vært annerledes ved fysisk oppmøte
  - Bedre samhold i gruppen
+
+## Etter presentasjonen
+ - Glemte å nevne at vi hadde implementert logikken til kortene. 
